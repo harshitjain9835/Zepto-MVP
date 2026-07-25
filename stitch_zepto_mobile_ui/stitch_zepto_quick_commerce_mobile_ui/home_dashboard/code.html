@@ -1,370 +1,374 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Zepto | Everything in minutes</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-error-container": "#ffdad6",
-                        "on-surface": "#e5e2e1",
-                        "surface-container": "#201f1f",
-                        "on-tertiary": "#003739",
-                        "on-tertiary-fixed-variant": "#004f53",
-                        "on-error": "#690005",
-                        "outline-variant": "#4a4451",
-                        "surface-dim": "#131313",
-                        "outline": "#968e9d",
-                        "error": "#ffb4ab",
-                        "tertiary-container": "#003032",
-                        "secondary-fixed-dim": "#ffb3b1",
-                        "on-secondary-fixed-variant": "#92001c",
-                        "primary-fixed": "#ecdcff",
-                        "surface-container-low": "#1c1b1b",
-                        "on-surface-variant": "#ccc3d3",
-                        "inverse-primary": "#7247b1",
-                        "inverse-on-surface": "#313030",
-                        "on-background": "#e5e2e1",
-                        "on-primary-container": "#a77cea",
-                        "inverse-surface": "#e5e2e1",
-                        "on-primary": "#410d80",
-                        "on-secondary-container": "#ffb3b0",
-                        "surface-tint": "#d6baff",
-                        "surface-container-lowest": "#0e0e0e",
-                        "on-primary-fixed": "#280056",
-                        "primary": "#d6baff",
-                        "primary-container": "#3b007a",
-                        "secondary-container": "#a90022",
-                        "surface-bright": "#393939",
-                        "surface": "#131313",
-                        "on-secondary-fixed": "#410007",
-                        "surface-variant": "#353534",
-                        "secondary": "#ffb3b1",
-                        "primary-fixed-dim": "#d6baff",
-                        "tertiary-fixed-dim": "#00dce5",
-                        "tertiary-fixed": "#63f7ff",
-                        "tertiary": "#00dce5",
-                        "surface-container-high": "#2a2a2a",
-                        "surface-container-highest": "#353534",
-                        "error-container": "#93000a",
-                        "background": "#131313",
-                        "on-primary-fixed-variant": "#592d98",
-                        "on-tertiary-fixed": "#002021",
-                        "on-secondary": "#680011",
-                        "on-tertiary-container": "#00a1a8",
-                        "secondary-fixed": "#ffdad8"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "margin-desktop": "24px",
-                        "stack-sm": "8px",
-                        "margin-mobile": "16px",
-                        "gutter": "12px",
-                        "stack-lg": "24px",
-                        "stack-xs": "4px",
-                        "unit": "4px",
-                        "stack-md": "16px"
-                    },
-                    "fontFamily": {
-                        "headline-md": ["Plus Jakarta Sans"],
-                        "label-sm": ["Plus Jakarta Sans"],
-                        "body-lg": ["Plus Jakarta Sans"],
-                        "body-md": ["Plus Jakarta Sans"],
-                        "label-lg": ["Plus Jakarta Sans"],
-                        "headline-lg-mobile": ["Plus Jakarta Sans"],
-                        "headline-xl": ["Plus Jakarta Sans"],
-                        "headline-lg": ["Plus Jakarta Sans"]
-                    },
-                    "fontSize": {
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
-                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
-                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
-                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
-                    }
-                },
-            },
-        }
-    </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-        body {
-            background-color: #121212;
-            color: #e5e2e1;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .glass-badge {
-            background: rgba(226, 55, 68, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .purple-glow {
-            box-shadow: 0 4px 20px rgba(59, 0, 122, 0.4);
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .product-card-stroke {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .zepto-gradient {
-            background: linear-gradient(135deg, #3b007a 0%, #E23744 100%);
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+  * { font-family: 'Plus Jakarta Sans', sans-serif; }
+  body {
+    background-color: #f8f8f8;
+    color: #1a1a1a;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 100dvh;
+  }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .zepto-logo {
+    font-size: 26px;
+    font-weight: 800;
+    color: #8B2CF5;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .tab-active {
+    color: #8B2CF5;
+    border-bottom: 2.5px solid #8B2CF5;
+    font-weight: 700;
+  }
+  .tab-inactive {
+    color: #555;
+    border-bottom: 2.5px solid transparent;
+    font-weight: 500;
+  }
+  .add-btn {
+    background: #f3e8ff;
+    color: #8B2CF5;
+    font-weight: 700;
+    border: 1.5px solid #8B2CF5;
+    border-radius: 6px;
+    padding: 4px 14px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+  .add-btn:active { background: #8B2CF5; color: white; }
+</style>
 </head>
-<body class="font-body-md selection:bg-primary selection:text-on-primary">
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm flex flex-col gap-2 p-4 w-full">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="p-2 rounded-full bg-primary-container text-primary flex items-center justify-center">
-<span class="material-symbols-outlined text-[20px]" data-icon="location_on">location_on</span>
-</div>
-<div class="flex flex-col">
-<span class="text-label-lg font-label-lg text-primary">Delivery in 10 mins</span>
-<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-0.5">
-                        HSR Layout, Bangalore <span class="material-symbols-outlined text-[14px]">expand_more</span>
-</span>
-</div>
-</div>
-<div class="w-10 h-10 rounded-full border-2 border-primary-container overflow-hidden active:scale-95 transition-transform duration-150">
-<img class="w-full h-full object-cover" data-alt="A professional close-up studio portrait of a young adult with a friendly expression, set against a vibrant neon-lit background with deep purple and magenta hues. The lighting is crisp and modern, matching a high-end tech interface aesthetic. High-quality photography with soft bokeh." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5I0x0eIbivRjWLNHNxNsShOc5jSw6pHxPlzcj-MjV-_GFYFVGNdXxD-YmDcXJaRYCsdEgkr2VS7bLnGUzgxLLxa7Hdc_96R9wED1WGxK-n55BEw7yviTLBcD4gWcEzs3d4zdYszs8PE4emgwsitu9vAtbPemoDnzXcJs8V_v3RoVEyBRWCCyAx-ZkeDKIJMo7vWGf8IZlfg2vVnglNUx75r-v5Nn09Jwp4L6qV5Fj-ZE2Gxq1jDMpcOJHgzPLJsMr-hLIphTTcu3C"/>
-</div>
-</div>
-<!-- Search Bar -->
-<div class="relative mt-2">
-<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
-</div>
-<input class="w-full h-12 bg-surface-container-high border-none rounded-full pl-12 pr-4 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary transition-all font-body-md" placeholder="Search for 'Milk'" type="text"/>
-</div>
+<body>
+
+<!-- ── STICKY HEADER ─────────────────────────────────────────────────────── -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+
+  <!-- Row 1: Logo · Search · Login · Cart -->
+  <div class="flex items-center gap-2 px-3 py-2.5">
+
+    <!-- Logo block -->
+    <div class="flex-shrink-0 flex flex-col">
+      <span class="zepto-logo">zepto</span>
+      <div class="flex items-center gap-0.5 mt-0.5">
+        <span class="material-symbols-outlined text-[11px] text-[#8B2CF5]" style="font-variation-settings:'FILL' 1;">bolt</span>
+        <span class="text-[10px] font-semibold text-gray-500">Delivery in minutes*</span>
+      </div>
+      <button class="flex items-center gap-0.5 mt-0.5">
+        <span class="text-[10px] font-medium text-gray-500">Select Location</span>
+        <span class="material-symbols-outlined text-[11px] text-gray-500">expand_more</span>
+      </button>
+    </div>
+
+    <!-- Search -->
+    <div class="flex-1 relative">
+      <span class="material-symbols-outlined text-gray-400 text-[18px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">search</span>
+      <input
+        class="w-full h-10 bg-gray-100 rounded-full pl-9 pr-3 text-sm placeholder:text-gray-400 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#8B2CF5]"
+        placeholder='Search for "cheese slices"'
+        type="text"
+      />
+    </div>
+
+    <!-- Login -->
+    <button class="flex flex-col items-center flex-shrink-0">
+      <span class="material-symbols-outlined text-[22px] text-gray-600">account_circle</span>
+      <span class="text-[10px] text-gray-500 font-medium">Login</span>
+    </button>
+
+    <!-- Cart -->
+    <button class="flex flex-col items-center flex-shrink-0 relative" data-nav="cart">
+      <span class="material-symbols-outlined text-[22px] text-gray-600">shopping_cart</span>
+      <span class="text-[10px] text-gray-500 font-medium">Cart</span>
+      <span class="absolute -top-0.5 -right-0.5 bg-[#8B2CF5] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+    </button>
+  </div>
+
+  <!-- Row 2: Category Tabs -->
+  <div class="flex overflow-x-auto hide-scrollbar border-t border-gray-100">
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-active whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]" style="font-variation-settings:'FILL' 1;">shopping_bag</span>All
+    </button>
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]">local_cafe</span>Cafe
+    </button>
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]">home</span>Home
+    </button>
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]">toys</span>Toys
+    </button>
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]">grass</span>Fresh
+    </button>
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]">headphones</span>Electronics
+    </button>
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]">smartphone</span>Mobiles
+    </button>
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]">face</span>Beauty
+    </button>
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+      <span class="material-symbols-outlined text-[13px]">checkroom</span>Fashion
+    </button>
+  </div>
 </header>
-<main class="pt-36 pb-24 px-4 space-y-8">
-<!-- Hero Banner (Bento Style) -->
-<section class="relative w-full h-44 rounded-xl overflow-hidden zepto-gradient flex items-center p-6 shadow-xl">
-<div class="absolute inset-0 opacity-20">
 
-</div>
-<div class="relative z-10 w-2/3">
-<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-white leading-tight">Get 50% Off on your first order</h2>
-<p class="text-label-lg font-label-lg text-white/80 mt-1">Use Code: ZEPTO50</p>
-<button class="mt-4 bg-white text-primary-container px-4 py-2 rounded-lg font-label-lg active:scale-95 transition-transform">Shop Now</button>
-</div>
-<div class="absolute right-[-20px] bottom-[-20px] w-48 h-48 opacity-90 rotate-[-15deg]">
-<img class="w-full h-full object-contain" data-alt="A high-speed dynamic 3D render of a variety of fresh colorful groceries including a splash of milk, bright red strawberries, and green avocados, all flying through a purple-tinted digital space. The visual style is vibrant, high-contrast, and energetic, conveying extreme speed and freshness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX3JvCXBc_rJmmo9yhfZxCGjrSu05C9DNbBVVPtC6xpwVVb_yxVOHjtyX6613Zb8tJb1JXK2auvFEEGwSBdTNSiysMo_2UlnG630dh0A1zBiMMlQwPuvf09tgZ_ycquxr-bCmtZgPrNWf3KSBkxl1MgawBk3D8e-3UwKWDE3GS4TXZvIQ5HzwD13URCzKQ1r4qpm2jU28K89WSsLVVDkY3aPtoK7FP0-3mCgNNUwgye8gJQUgXQLf4Gget25Au21rqdObfjmYgJXy2"/>
-</div>
-</section>
-<!-- Category Horizontal List -->
-<section>
-<div class="flex items-center justify-between mb-4">
-<h3 class="text-headline-md font-headline-md text-on-surface">Categories</h3>
-<span class="text-label-lg font-label-lg text-primary">See All</span>
-</div>
-<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2">
-<!-- Category Item -->
-<div class="flex flex-col items-center gap-2 flex-shrink-0">
-<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center p-3 hover:bg-surface-container-highest transition-colors active:scale-95">
-<img class="w-full h-full object-contain" data-alt="A minimalist high-detail 3D icon of a classic glass milk bottle with fresh splashes, rendered in a clean modern style with soft studio lighting. Background is a neutral dark charcoal tone to fit a dark-mode UI. High resolution, vibrant white highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcgqRO1Ot9msdYetw7x7JhY-1OIliBPi2sSDN3rnhUmSi-3CvgTL73vkQyQPwpfrPMpVBDY9m-rmSjxt9DaaAniqqI8VtldOQHw1nsCM6j868F4yS74MpNoLEQRDRM8xMFyi6pnTxLqzKGyX2uLjXdSxJWDHqYBFkY7F0wCwEJLHOtpegOE2gQ9ts4mISVGgb3BFAwe1WdgqF-1STumlkdkK9ttBixMUW0LglvvTMFG1bSxZHcHYmOvSLj_Y7M4raYlfpxrbKdfX64"/>
-</div>
-<span class="text-label-sm font-label-sm text-on-surface-variant">Milk</span>
-</div>
-<div class="flex flex-col items-center gap-2 flex-shrink-0">
-<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center p-3 hover:bg-surface-container-highest transition-colors active:scale-95">
-<img class="w-full h-full object-contain" data-alt="A minimalist high-detail 3D icon of two organic brown eggs in a small modern carton, rendered with soft studio lighting. Dark charcoal background, sophisticated color palette, ultra-realistic textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEqFsvfBaaEQjU6Wl8PwoKFL0g5xVgOBQCPzHtiy4hEr-mh8oBWhIjBRElN7uuet9Mcv89xejVO0zjAVcfLJ5kEyJYcL91TaJ2IAK00OJ12rCj-jeQMPMVZ-Xeak0IXsefuNwGo2aL-KyY4K2spd_jN--IDaRDGHhTSrXoVdp3tGxw9aMUEJyhbmnxHjJcvh1lfxS_tkDWfVheffjZRFb789Tpyg8csOzeZWm4a6pSU4HroX2-GNYMtKnkIrDbgcxwsHDbNY9ktEcE"/>
-</div>
-<span class="text-label-sm font-label-sm text-on-surface-variant">Eggs</span>
-</div>
-<div class="flex flex-col items-center gap-2 flex-shrink-0">
-<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center p-3 hover:bg-surface-container-highest transition-colors active:scale-95">
-<img class="w-full h-full object-contain" data-alt="A minimalist high-detail 3D icon of a ripe green avocado and a bright red apple, rendered with vibrant colors and soft highlights. Dark charcoal background, high-end commercial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDyeSEaBitrkxByUqzpYqM9Wlnp0OzQ2uhPsmPsPuT7fFAKtxOF9KzHBHwGngq7OCrRKCzGH_6p8NiObwEo2lqGxfJGVW2lAmmmmI_q2_s8mEawZVEL86GWrWoOt9CnrPolkn8NA_5RIHsISOilTJGVTvyMrqiNNyXpDkXRN2SLC64alfZ2X1JXh_nu6iU9IEcESuHR34OEYiJzNG-zfmCOqEXkFx5uLu6cGyewyvrQs-hAvnhE-Fj9wi0ujGxhADgXwlHQG8K3GDW"/>
-</div>
-<span class="text-label-sm font-label-sm text-on-surface-variant">Fruits</span>
-</div>
-<div class="flex flex-col items-center gap-2 flex-shrink-0">
-<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center p-3 hover:bg-surface-container-highest transition-colors active:scale-95">
-<img class="w-full h-full object-contain" data-alt="A minimalist high-detail 3D icon of a colorful bag of snacks, slightly open to reveal a few chips, rendered in a modern energetic style. Dark charcoal background, neon accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeKMAmgfa3EJkCddbzNa0bSpq5Xig_paUQvcwxcJRgGfkco1of1uny4KGjVDhrxSpQhCyZkZokJSckh7_QuTjOa62wgz9BIK2-wt5gxp5R2QgktMvrKWjaLn0nTMASS7rtxh897Oz6L1-3CIV7e0hLjZgGanzIIxKkZE7GeSenzBioLT0gY3JC_N3gYSW3eew9H0mSopCZ7TxlgHhaZqV316xqs4TALzelor1Io7DNEw7FhqT2JGIGncgT1Cmi5p79Zas0hmOkIMvL"/>
-</div>
-<span class="text-label-sm font-label-sm text-on-surface-variant">Snacks</span>
-</div>
-<div class="flex flex-col items-center gap-2 flex-shrink-0">
-<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center p-3 hover:bg-surface-container-highest transition-colors active:scale-95">
-<img class="w-full h-full object-contain" data-alt="A minimalist high-detail 3D icon of a fresh cup of steaming coffee and a tea leaf, rendered with warmth and precision. Dark charcoal background, premium finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNmNdN4lboEoliLg1w48y9gRktlz3kn4o43A2PjHWmDWoBBk4HHB67pj2ptuYnftRTF_MTCXd4TtRV_7EhkX5jzMbB8rjdXsnWtNR6Gvm5NE-SFB2Y3FDRtO6sOGx1lpC_1tK7jKUFu_3yNcw-hO5nwRt-HFuOoBiUnbVz2wySSq_eOKsWb9cj9UFNJEjGLIzBYwn7sZEoOLxcQPz-FkPeTiWG-A1wrr8Eh43SwNHoW8auEqDt6LBlpAhW6MWWe1FYGcSerBs8o6ad"/>
-</div>
-<span class="text-label-sm font-label-sm text-on-surface-variant">Beverages</span>
-</div>
-<div class="flex flex-col items-center gap-2 flex-shrink-0">
-<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center p-3 hover:bg-surface-container-highest transition-colors active:scale-95">
-<img class="w-full h-full object-contain" data-alt="A minimalist high-detail 3D icon of a variety of colorful vegetable roots like carrots and broccoli, crisp and fresh. Dark charcoal background, high-contrast lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq0s8Rpsptqf75CFlGDKirVL-HJL7oWsQjCQSqsdtMJSJq3HqdET4w8Y5FODzCUBnu1Ag5mrkFkgjXKqBuXwZkUYAtPJnlYriT0epK1nz0VYKmcOWvX6u0rQGwyZKloqYUvqDSEQNPJk3D8ezNLn5Bxq6gjiFUL4KMqIw6geFIft-GhDgCCBvq9CsiJHXK8RzJkrwzfQvOq-sz9_Ix55wnqlyApqko1h9od9ix1E8UBZkrM6SNjIp28DLrKFueHVgv_GW1u5HcvKaL"/>
-</div>
-<span class="text-label-sm font-label-sm text-on-surface-variant">Veggies</span>
-</div>
-</div>
-</section>
-<!-- Trending Near You Grid -->
-<section>
-<div class="flex items-center justify-between mb-4">
-<h3 class="text-headline-md font-headline-md text-on-surface">Trending Near You</h3>
-<span class="text-label-lg font-label-lg text-primary flex items-center">View all <span class="material-symbols-outlined text-[16px] ml-1">chevron_right</span></span>
-</div>
-<div class="grid grid-cols-2 gap-3">
-<!-- Product Card 1 -->
-<div class="bg-surface-container-low rounded-xl product-card-stroke overflow-hidden flex flex-col p-3 relative group">
-<div class="relative w-full aspect-square rounded-lg bg-white/5 mb-3 flex items-center justify-center">
-<img class="w-full h-full object-contain p-2" data-alt="A high-end commercial product shot of a premium organic whole milk carton, isolated against a soft gray background. Realistic textures, condensation on the surface, professional studio lighting. High contrast and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2CDGA4mBHoGVK6kIrXbQPk-2Pn1hFoPPVRZf8BRwoURBxJnyR65gUrgGLxfWxuS99la6287A6QoaK7irzz_xisDIpJeUQXKNnpMh4AzcL3Yn7vcgtV7P2Q40UNoYc5RwiEGmgDae1rv_lnR70PtwRA1tQZAb-NTXyYH-ft99ZJCV-9O6lfXKy3ZefdkvK_rRDnlR-Ksh067LQI8zwbL-TuxNzcUU40fEfcwmRyqKqjwdh_hDmfZxqUOqUsFgtfu_wvET9YxL0VBN9"/>
-<div class="absolute top-0 left-0 glass-badge px-2 py-0.5 rounded-br-lg flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px] text-white">schedule</span>
-<span class="text-[10px] font-bold text-white">10 MINS</span>
-</div>
-</div>
-<div class="space-y-1">
-<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">AMUL</p>
-<h4 class="text-body-md font-bold text-on-surface leading-tight truncate">Amul Taaza Toned Milk</h4>
-<p class="text-label-sm font-label-sm text-on-surface-variant">500 ml</p>
-</div>
-<div class="mt-4 flex items-center justify-between">
-<span class="text-body-lg font-bold text-on-surface">₹27</span>
-<button class="bg-primary-container text-primary px-4 py-1.5 rounded-lg font-bold text-label-lg hover:bg-primary hover:text-on-primary transition-all active:scale-90 purple-glow">Add</button>
-</div>
-</div>
-<!-- Product Card 2 -->
-<div class="bg-surface-container-low rounded-xl product-card-stroke overflow-hidden flex flex-col p-3 relative group">
-<div class="relative w-full aspect-square rounded-lg bg-white/5 mb-3 flex items-center justify-center">
-<img class="w-full h-full object-contain p-2" data-alt="A commercial close-up shot of a carton of fresh farm-picked large white eggs, presented in clean minimal packaging. Soft lighting highlight the smooth texture of the eggs. High-end food photography, dark background context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp_bRxU7xtCQCitckFYe3r5szD9eQQRPMXN0L6oDK6BbFdbHq0LWkdVh4ab728PEOVxcw2ue7Ffx-i5YrvZRSHwr8YDYagdkT6EHE9GTLnctBPx5RyfCAjxZBC8d9qBXHRduaqtz0TcvUgaBjWqdqqUGqcWyit-X5CUotBn7zJFYbCSQk7o6TV5vizLAC9bH7hatE4couUSxiI_vRyJBDnDkYz9Itfwq5-rCM_VM-oGFn5ihMyUghfiPokfaBCEmo2rlnPDkc4iwMe"/>
-<div class="absolute top-0 left-0 glass-badge px-2 py-0.5 rounded-br-lg flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px] text-white">schedule</span>
-<span class="text-[10px] font-bold text-white">10 MINS</span>
-</div>
-</div>
-<div class="space-y-1">
-<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">EGG WORLD</p>
-<h4 class="text-body-md font-bold text-on-surface leading-tight truncate">Farm Fresh Eggs</h4>
-<p class="text-label-sm font-label-sm text-on-surface-variant">6 pcs</p>
-</div>
-<div class="mt-4 flex items-center justify-between">
-<span class="text-body-lg font-bold text-on-surface">₹54</span>
-<button class="bg-primary-container text-primary px-4 py-1.5 rounded-lg font-bold text-label-lg hover:bg-primary hover:text-on-primary transition-all active:scale-90 purple-glow">Add</button>
-</div>
-</div>
-<!-- Product Card 3 -->
-<div class="bg-surface-container-low rounded-xl product-card-stroke overflow-hidden flex flex-col p-3 relative group">
-<div class="relative w-full aspect-square rounded-lg bg-white/5 mb-3 flex items-center justify-center">
-<img class="w-full h-full object-contain p-2" data-alt="A macro studio shot of fresh, vibrant red strawberries with green leaves, glistening with water droplets. High-end culinary photography style, black background, high-contrast, ultra-sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mZKUcuWT6849STma4oWV7ZYOwG_so-GpkAnq9Dynv8A0bzVQF8OMWakcKcbcs0IUoqS1OIJoq6h4mCthwtMnZAAbt-F2_4e_qmDpk-RdXdKJPxKjDQOvPmibadb7jRUiRrPPLfxa0_4uXWChL_9AvkTjOgn3koSPvtHXi7AmIU7CzWDXnkzGabz-yCsYf6Uvd6vJL3ex0qIo1BjzAz5qactCvATPSFtPPCT4bZL-3iJn-aLgwCBBrUwn3wf2ymOIuDcFJ86eI0_E"/>
-<div class="absolute top-0 left-0 glass-badge px-2 py-0.5 rounded-br-lg flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px] text-white">schedule</span>
-<span class="text-[10px] font-bold text-white">9 MINS</span>
-</div>
-</div>
-<div class="space-y-1">
-<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">FARM FRESH</p>
-<h4 class="text-body-md font-bold text-on-surface leading-tight truncate">Organic Strawberries</h4>
-<p class="text-label-sm font-label-sm text-on-surface-variant">250 g</p>
-</div>
-<div class="mt-4 flex items-center justify-between">
-<span class="text-body-lg font-bold text-on-surface">₹120</span>
-<button class="bg-primary-container text-primary px-4 py-1.5 rounded-lg font-bold text-label-lg hover:bg-primary hover:text-on-primary transition-all active:scale-90 purple-glow">Add</button>
-</div>
-</div>
-<!-- Product Card 4 -->
-<div class="bg-surface-container-low rounded-xl product-card-stroke overflow-hidden flex flex-col p-3 relative group">
-<div class="relative w-full aspect-square rounded-lg bg-white/5 mb-3 flex items-center justify-center">
-<img class="w-full h-full object-contain p-2" data-alt="A commercial packaging shot of gourmet salted potato chips bag, vibrant colors and metallic finish. The bag is shown slightly tilted. High-speed commercial photography style, crisp details, dark environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUpU4XiNfPGn6WaSp8v_ZDmfCtes0MlO5poGgkGfzX8Mn6pASA2atOazqtCooHOMSjNvlA6-cGJnKov59F1Jl2RjIBwDXGm_YoV2RHcVNToB177iOZYLHea9RWR_J5nrlwz679dR9ffLCmbSc5kEIjXwnYhufM8W845wNQnw9WcpBsGp9CZqUPs0Q-wKu6z9d0mNEBlzOp50aVkK-op7fxgLMH_iI_bBjyw11Z85SHDAJCVwiO-8iyvTTaPSh1Bh4Inp_3bVRtOEpo"/>
-<div class="absolute top-0 left-0 glass-badge px-2 py-0.5 rounded-br-lg flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px] text-white">schedule</span>
-<span class="text-[10px] font-bold text-white">11 MINS</span>
-</div>
-</div>
-<div class="space-y-1">
-<p class="text-label-sm font-label-sm text-outline uppercase tracking-wider">LAYS</p>
-<h4 class="text-body-md font-bold text-on-surface leading-tight truncate">Classic Salted Chips</h4>
-<p class="text-label-sm font-label-sm text-on-surface-variant">115 g</p>
-</div>
-<div class="mt-4 flex items-center justify-between">
-<span class="text-body-lg font-bold text-on-surface">₹30</span>
-<button class="bg-primary-container text-primary px-4 py-1.5 rounded-lg font-bold text-label-lg hover:bg-primary hover:text-on-primary transition-all active:scale-90 purple-glow">Add</button>
-</div>
-</div>
-</div>
-</section>
-<!-- Freshness Promise (Asymmetric Banner) -->
-<section class="flex gap-4">
-<div class="flex-1 bg-surface-container rounded-xl p-4 flex flex-col justify-center product-card-stroke">
-<span class="material-symbols-outlined text-tertiary mb-2">verified</span>
-<h4 class="text-body-lg font-bold text-on-surface">Farm to Home</h4>
-<p class="text-label-sm text-on-surface-variant mt-1 leading-relaxed">Direct sourcing ensures highest quality and freshness.</p>
-</div>
-<div class="w-1/3 bg-surface-container-high rounded-xl overflow-hidden product-card-stroke">
-<img class="w-full h-full object-cover" data-alt="A cinematic close-up of a farmer's hands holding a crate of fresh green spinach leaves under warm natural sunlight. The image has a premium, organic, and trustworthy feel. Shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8WUSNxNFJkOekgZDka1OawOcB0zbGeh0yGI4tp7H_dpewm2Ns6-SUKguiA7JHFtwzl1d8YXqEAHaLejBOzetHBPCPrt9b5HCSHSrvNZi_ADYh-3lezuN0FFN-PZTMkgthaw-tY7HpuLrFE00Lpr6LOB39pnqyDsPutVfgnUx0mbzvRYslgydxgXUcCXRlYUy1gmeQ2wmC_Ukv_rWYsB2-rZrXEMW0UNIzhnhu0_Rj87iXVFqPJqEnJ50oUKzS6Vyq0dlQOwBKeKp9"/>
-</div>
-</section>
+<!-- ── MAIN ───────────────────────────────────────────────────────────────── -->
+<main class="pb-24">
+
+  <!-- Category Tiles (horizontal scroll) -->
+  <section class="bg-white pt-3 pb-4 px-3 mb-2">
+    <div class="flex overflow-x-auto hide-scrollbar gap-2">
+
+      <!-- Fruits & Vegetables -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq0s8Rpsptqf75CFlGDKirVL-HJL7oWsQjCQSqsdtMJSJq3HqdET4w8Y5FODzCUBnu1Ag5mrkFkgjXKqBuXwZkUYAtPJnlYriT0epK1nz0VYKmcOWvX6u0rQGwyZKloqYUvqDSEQNPJk3D8ezNLn5Bxq6gjiFUL4KMqIw6geFIft-GhDgCCBvq9CsiJHXK8RzJkrwzfQvOq-sz9_Ix55wnqlyApqko1h9od9ix1E8UBZkrM6SNjIp28DLrKFueHVgv_GW1u5HcvKaL" alt="Fruits"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Fruits &amp;<br/>Vegetables</span>
+      </div>
+
+      <!-- Dairy, Bread & Eggs -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcgqRO1Ot9msdYetw7x7JhY-1OIliBPi2sSDN3rnhUmSi-3CvgTL73vkQyQPwpfrPMpVBDY9m-rmSjxt9DaaAniqqI8VtldOQHw1nsCM6j868F4yS74MpNoLEQRDRM8xMFyi6pnTxLqzKGyX2uLjXdSxJWDHqYBFkY7F0wCwEJLHOtpegOE2gQ9ts4mISVGgb3BFAwe1WdgqF-1STumlkdkK9ttBixMUW0LglvvTMFG1bSxZHcHYmOvSLj_Y7M4raYlfpxrbKdfX64" alt="Dairy"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Dairy, Bread<br/>&amp; Eggs</span>
+      </div>
+
+      <!-- Atta, Rice, Oil & Dals -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDyeSEaBitrkxByUqzpYqM9Wlnp0OzQ2uhPsmPsPuT7fFAKtxOF9KzHBHwGngq7OCrRKCzGH_6p8NiObwEo2lqGxfJGVW2lAmmmmI_q2_s8mEawZVEL86GWrWoOt9CnrPolkn8NA_5RIHsISOilTJGVTvyMrqiNNyXpDkXRN2SLC64alfZ2X1JXh_nu6iU9IEcESuHR34OEYiJzNG-zfmCOqEXkFx5uLu6cGyewyvrQs-hAvnhE-Fj9wi0ujGxhADgXwlHQG8K3GDW" alt="Atta Rice"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Atta, Rice,<br/>Oil &amp; Dals</span>
+      </div>
+
+      <!-- Meat, Fish & Eggs -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEqFsvfBaaEQjU6Wl8PwoKFL0g5xVgOBQCPzHtiy4hEr-mh8oBWhIjBRElN7uuet9Mcv89xejVO0zjAVcfLJ5kEyJYcL91TaJ2IAK00OJ12rCj-jeQMPMVZ-Xeak0IXsefuNwGo2aL-KyY4K2spd_jN--IDaRDGHhTSrXoVdp3tGxw9aMUEJyhbmnxHjJcvh1lfxS_tkDWfVheffjZRFb789Tpyg8csOzeZWm4a6pSU4HroX2-GNYMtKnkIrDbgcxwsHDbNY9ktEcE" alt="Meat Fish"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Meat, Fish<br/>&amp; Eggs</span>
+      </div>
+
+      <!-- Masala & Dry Fruits -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeKMAmgfa3EJkCddbzNa0bSpq5Xig_paUQvcwxcJRgGfkco1of1uny4KGjVDhrxSpQhCyZkZokJSckh7_QuTjOa62wgz9BIK2-wt5gxp5R2QgktMvrKWjaLn0nTMASS7rtxh897Oz6L1-3CIV7e0hLjZgGanzIIxKkZE7GeSenzBioLT0gY3JC_N3gYSW3eew9H0mSopCZ7TxlgHhaZqV316xqs4TALzelor1Io7DNEw7FhqT2JGIGncgT1Cmi5p79Zas0hmOkIMvL" alt="Masala"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Masala &amp;<br/>Dry Fruits</span>
+      </div>
+
+      <!-- Breakfast & Sauces -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNmNdN4lboEoliLg1w48y9gRktlz3kn4o43A2PjHWmDWoBBk4HHB67pj2ptuYnftRTF_MTCXd4TtRV_7EhkX5jzMbB8rjdXsnWtNR6Gvm5NE-SFB2Y3FDRtO6sOGx1lpC_1tK7jKUFu_3yNcw-hO5nwRt-HFuOoBiUnbVz2wySSq_eOKsWb9cj9UFNJEjGLIzBYwn7sZEoOLxcQPz-FkPeTiWG-A1wrr8Eh43SwNHoW8auEqDt6LBlpAhW6MWWe1FYGcSerBs8o6ad" alt="Breakfast"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Breakfast<br/>&amp; Sauces</span>
+      </div>
+
+      <!-- Packaged Food -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUpU4XiNfPGn6WaSp8v_ZDmfCtes0MlO5poGgkGfzX8Mn6pASA2atOazqtCooHOMSjNvlA6-cGJnKov59F1Jl2RjIBwDXGm_YoV2RHcVNToB177iOZYLHea9RWR_J5nrlwz679dR9ffLCmbSc5kEIjXwnYhufM8W845wNQnw9WcpBsGp9CZqUPs0Q-wKu6z9d0mNEBlzOp50aVkK-op7fxgLMH_iI_bBjyw11Z85SHDAJCVwiO-8iyvTTaPSh1Bh4Inp_3bVRtOEpo" alt="Packaged"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Packaged<br/>Food</span>
+      </div>
+
+      <!-- Zepto Cafe -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mZKUcuWT6849STma4oWV7ZYOwG_so-GpkAnq9Dynv8A0bzVQF8OMWakcKcbcs0IUoqS1OIJoq6h4mCthwtMnZAAbt-F2_4e_qmDpk-RdXdKJPxKjDQOvPmibadb7jRUiRrPPLfxa0_4uXWChL_9AvkTjOgn3koSPvtHXi7AmIU7CzWDXnkzGabz-yCsYf6Uvd6vJL3ex0qIo1BjzAz5qactCvATPSFtPPCT4bZL-3iJn-aLgwCBBrUwn3wf2ymOIuDcFJ86eI0_E" alt="Zepto Cafe"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Zepto<br/>Cafe</span>
+      </div>
+
+      <!-- Tea, Coffee & More -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2CDGA4mBHoGVK6kIrXbQPk-2Pn1hFoPPVRZf8BRwoURBxJnyR65gUrgGLxfWxuS99la6287A6QoaK7irzz_xisDIpJeUQXKNnpMh4AzcL3Yn7vcgtV7P2Q40UNoYc5RwiEGmgDae1rv_lnR70PtwRA1tQZAb-NTXyYH-ft99ZJCV-9O6lfXKy3ZefdkvK_rRDnlR-Ksh067LQI8zwbL-TuxNzcUU40fEfcwmRyqKqjwdh_hDmfZxqUOqUsFgtfu_wvET9YxL0VBN9" alt="Tea Coffee"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Tea, Coffee<br/>&amp; More</span>
+      </div>
+
+      <!-- Ice Creams & More -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8WUSNxNFJkOekgZDka1OawOcB0zbGeh0yGI4tp7H_dpewm2Ns6-SUKguiA7JHFtwzl1d8YXqEAHaLejBOzetHBPCPrt9b5HCSHSrvNZi_ADYh-3lezuN0FFN-PZTMkgthaw-tY7HpuLrFE00Lpr6LOB39pnqyDsPutVfgnUx0mbzvRYslgydxgXUcCXRlYUy1gmeQ2wmC_Ukv_rWYsB2-rZrXEMW0UNIzhnhu0_Rj87iXVFqPJqEnJ50oUKzS6Vyq0dlQOwBKeKp9" alt="Ice Cream"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Ice Creams<br/>&amp; More</span>
+      </div>
+
+      <!-- Frozen Food -->
+      <div class="flex flex-col items-center gap-1.5 flex-shrink-0 w-[78px]">
+        <div class="w-[78px] h-[78px] rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-1.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp_bRxU7xtCQCitckFYe3r5szD9eQQRPMXN0L6oDK6BbFdbHq0LWkdVh4ab728PEOVxcw2ue7Ffx-i5YrvZRSHwr8YDYagdkT6EHE9GTLnctBPx5RyfCAjxZBC8d9qBXHRduaqtz0TcvUgaBjWqdqqUGqcWyit-X5CUotBn7zJFYbCSQk7o6TV5vizLAC9bH7hatE4couUSxiI_vRyJBDnDkYz9Itfwq5-rCM_VM-oGFn5ihMyUghfiPokfaBCEmo2rlnPDkc4iwMe" alt="Frozen"/>
+        </div>
+        <span class="text-[10.5px] font-medium text-gray-700 text-center leading-tight">Frozen<br/>Food</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Promotional Banners -->
+  <section class="px-3 mb-2">
+    <div class="flex gap-3">
+
+      <!-- Left: All New Zepto Experience (lavender) -->
+      <div class="flex-1 rounded-2xl p-4 flex flex-col" style="background:#EDE7F6;">
+        <p class="text-[11px] font-bold text-gray-500 tracking-wide uppercase leading-tight">
+          ALL <span class="text-[#8B2CF5] font-extrabold">NEW ZEPTO</span><br/>EXPERIENCE
+        </p>
+        <div class="mt-3 space-y-2">
+          <!-- ₹0 Fees -->
+          <div class="bg-white rounded-xl px-3 py-2 flex items-center gap-2 shadow-sm">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:#8B2CF5;">
+              <span class="text-white text-[15px] font-extrabold">Z</span>
+            </div>
+            <span class="text-[15px] font-extrabold text-[#8B2CF5] tracking-tight">₹0 FEES</span>
+          </div>
+          <!-- Everyday Low Prices -->
+          <div class="bg-white rounded-xl px-3 py-2 flex items-center gap-2 shadow-sm">
+            <div class="w-9 h-9 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-[18px] text-[#8B2CF5]" style="font-variation-settings:'FILL' 1;">currency_rupee</span>
+            </div>
+            <div class="leading-tight">
+              <p class="text-[11px] font-extrabold text-gray-800">EVERYDAY LOW</p>
+              <p class="text-[11px] font-extrabold text-gray-800">PRICES*</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Paan Corner (teal) -->
+      <div class="flex-1 rounded-2xl p-4 flex flex-col justify-between overflow-hidden" style="background:#B2EBF2;">
+        <div>
+          <p class="text-[16px] font-extrabold text-teal-900 leading-tight">PAAN<br/>CORNER</p>
+          <p class="text-[10px] text-teal-800 font-medium mt-1 leading-snug">
+            Get smoking accessories, fresheners &amp; more delivered in minutes!
+          </p>
+        </div>
+        <button class="mt-3 self-start bg-teal-600 text-white text-[11px] font-bold px-3 py-1.5 rounded-full active:opacity-80">
+          Shop Now
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Trending Near You -->
+  <section class="bg-white px-3 pt-4 pb-3">
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="text-[15px] font-bold text-gray-800">Trending Near You</h3>
+      <span class="text-[13px] font-semibold text-[#8B2CF5]">View all</span>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+
+      <!-- Card 1 -->
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex flex-col p-3">
+        <div class="relative w-full aspect-square bg-gray-50 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2CDGA4mBHoGVK6kIrXbQPk-2Pn1hFoPPVRZf8BRwoURBxJnyR65gUrgGLxfWxuS99la6287A6QoaK7irzz_xisDIpJeUQXKNnpMh4AzcL3Yn7vcgtV7P2Q40UNoYc5RwiEGmgDae1rv_lnR70PtwRA1tQZAb-NTXyYH-ft99ZJCV-9O6lfXKy3ZefdkvK_rRDnlR-Ksh067LQI8zwbL-TuxNzcUU40fEfcwmRyqKqjwdh_hDmfZxqUOqUsFgtfu_wvET9YxL0VBN9" alt="Milk"/>
+          <div class="absolute top-1.5 left-1.5 bg-[#8B2CF5] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+            <span class="material-symbols-outlined text-[9px]">schedule</span>10 MIN
+          </div>
+        </div>
+        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">AMUL</p>
+        <h4 class="text-[12px] font-bold text-gray-800 leading-tight truncate mt-0.5">Taaza Toned Milk</h4>
+        <p class="text-[10px] text-gray-400 mt-0.5">500 ml</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="text-[14px] font-bold text-gray-800">₹27</span>
+          <button class="add-btn">Add</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex flex-col p-3">
+        <div class="relative w-full aspect-square bg-gray-50 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp_bRxU7xtCQCitckFYe3r5szD9eQQRPMXN0L6oDK6BbFdbHq0LWkdVh4ab728PEOVxcw2ue7Ffx-i5YrvZRSHwr8YDYagdkT6EHE9GTLnctBPx5RyfCAjxZBC8d9qBXHRduaqtz0TcvUgaBjWqdqqUGqcWyit-X5CUotBn7zJFYbCSQk7o6TV5vizLAC9bH7hatE4couUSxiI_vRyJBDnDkYz9Itfwq5-rCM_VM-oGFn5ihMyUghfiPokfaBCEmo2rlnPDkc4iwMe" alt="Eggs"/>
+          <div class="absolute top-1.5 left-1.5 bg-[#8B2CF5] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+            <span class="material-symbols-outlined text-[9px]">schedule</span>10 MIN
+          </div>
+        </div>
+        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">EGG WORLD</p>
+        <h4 class="text-[12px] font-bold text-gray-800 leading-tight truncate mt-0.5">Farm Fresh Eggs</h4>
+        <p class="text-[10px] text-gray-400 mt-0.5">6 pcs</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="text-[14px] font-bold text-gray-800">₹54</span>
+          <button class="add-btn">Add</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex flex-col p-3">
+        <div class="relative w-full aspect-square bg-gray-50 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mZKUcuWT6849STma4oWV7ZYOwG_so-GpkAnq9Dynv8A0bzVQF8OMWakcKcbcs0IUoqS1OIJoq6h4mCthwtMnZAAbt-F2_4e_qmDpk-RdXdKJPxKjDQOvPmibadb7jRUiRrPPLfxa0_4uXWChL_9AvkTjOgn3koSPvtHXi7AmIU7CzWDXnkzGabz-yCsYf6Uvd6vJL3ex0qIo1BjzAz5qactCvATPSFtPPCT4bZL-3iJn-aLgwCBBrUwn3wf2ymOIuDcFJ86eI0_E" alt="Strawberries"/>
+          <div class="absolute top-1.5 left-1.5 bg-[#8B2CF5] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+            <span class="material-symbols-outlined text-[9px]">schedule</span>9 MIN
+          </div>
+        </div>
+        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">FARM FRESH</p>
+        <h4 class="text-[12px] font-bold text-gray-800 leading-tight truncate mt-0.5">Organic Strawberries</h4>
+        <p class="text-[10px] text-gray-400 mt-0.5">250 g</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="text-[14px] font-bold text-gray-800">₹120</span>
+          <button class="add-btn">Add</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex flex-col p-3">
+        <div class="relative w-full aspect-square bg-gray-50 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
+          <img class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUpU4XiNfPGn6WaSp8v_ZDmfCtes0MlO5poGgkGfzX8Mn6pASA2atOazqtCooHOMSjNvlA6-cGJnKov59F1Jl2RjIBwDXGm_YoV2RHcVNToB177iOZYLHea9RWR_J5nrlwz679dR9ffLCmbSc5kEIjXwnYhufM8W845wNQnw9WcpBsGp9CZqUPs0Q-wKu6z9d0mNEBlzOp50aVkK-op7fxgLMH_iI_bBjyw11Z85SHDAJCVwiO-8iyvTTaPSh1Bh4Inp_3bVRtOEpo" alt="Chips"/>
+          <div class="absolute top-1.5 left-1.5 bg-[#8B2CF5] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+            <span class="material-symbols-outlined text-[9px]">schedule</span>11 MIN
+          </div>
+        </div>
+        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">LAYS</p>
+        <h4 class="text-[12px] font-bold text-gray-800 leading-tight truncate mt-0.5">Classic Salted Chips</h4>
+        <p class="text-[10px] text-gray-400 mt-0.5">115 g</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="text-[14px] font-bold text-gray-800">₹30</span>
+          <button class="add-btn">Add</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
-<!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container dark:bg-surface-container-lowest backdrop-blur-md shadow-[0_-4px_12px_rgba(59,0,122,0.15)] rounded-t-xl">
-<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold scale-90 transition-transform" href="#" data-nav="home">
-<span class="material-symbols-outlined text-[24px]" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
-<span class="text-label-sm font-label-sm mt-1">Zepto</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="grid_view">grid_view</span>
-<span class="text-label-sm font-label-sm mt-1">Categories</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="receipt_long">receipt_long</span>
-<span class="text-label-sm font-label-sm mt-1">Orders</span>
-</a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-[24px]" data-icon="auto_awesome">auto_awesome</span>
-<span class="text-label-sm font-label-sm mt-1">Curated</span>
-</a>
-</nav>
-<!-- FAB (Suppressed on Home according to instructions usually, but let's add it for 'Cart' context if appropriate - instructions say "suppress the FAB on Settings, Profile, Details" but "MUST ONLY render the FAB if screen's primary purpose aligns". On a dashboard, a 'Cart' FAB is common.) -->
-<button class="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-primary text-on-primary shadow-2xl flex items-center justify-center purple-glow z-40 active:scale-90 transition-transform" data-nav="cart">
-<span class="material-symbols-outlined text-[28px]" data-icon="shopping_basket" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
-<div class="absolute -top-1 -right-1 bg-error text-on-error rounded-full w-5 h-5 flex items-center justify-center text-[10px] font-bold">2</div>
-</button>
-<script>
-        // Micro-interactions for buttons
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('touchstart', () => {
-                btn.style.transform = 'scale(0.95)';
-            });
-            btn.addEventListener('touchend', () => {
-                btn.style.transform = 'scale(1)';
-            });
-        });
 
-        // Sticky Header Effect on Scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 20) {
-                header.classList.add('shadow-md', 'backdrop-blur-md', 'bg-surface/90');
-            } else {
-                header.classList.remove('shadow-md', 'backdrop-blur-md', 'bg-surface/90');
-            }
-        });
-    </script>
+<!-- ── BOTTOM NAV ─────────────────────────────────────────────────────────── -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-100 flex justify-around items-center px-4 py-2 pb-safe shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
+  <a class="flex flex-col items-center gap-0.5" href="#" data-nav="home">
+    <span class="material-symbols-outlined text-[24px] text-[#8B2CF5]" style="font-variation-settings:'FILL' 1;">bolt</span>
+    <span class="text-[10px] font-bold text-[#8B2CF5]">Zepto</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5" href="#">
+    <span class="material-symbols-outlined text-[24px] text-gray-400">grid_view</span>
+    <span class="text-[10px] font-medium text-gray-400">Categories</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5" href="#">
+    <span class="material-symbols-outlined text-[24px] text-gray-400">receipt_long</span>
+    <span class="text-[10px] font-medium text-gray-400">Orders</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5" href="#">
+    <span class="material-symbols-outlined text-[24px] text-gray-400">auto_awesome</span>
+    <span class="text-[10px] font-medium text-gray-400">Curated</span>
+  </a>
+</nav>
+
 <script src="../app-router.js"></script>
-</body></html>
+</body>
+</html>
