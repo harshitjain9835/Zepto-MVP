@@ -323,7 +323,7 @@
 </main>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-container dark:bg-surface-container-lowest backdrop-blur-md shadow-[0_-4px_12px_rgba(59,0,122,0.15)] rounded-t-xl">
-<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold scale-90 transition-transform" href="#">
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold scale-90 transition-transform" href="#" data-nav="home">
 <span class="material-symbols-outlined text-[24px]" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
 <span class="text-label-sm font-label-sm mt-1">Zepto</span>
 </a>
@@ -341,7 +341,7 @@
 </a>
 </nav>
 <!-- FAB (Suppressed on Home according to instructions usually, but let's add it for 'Cart' context if appropriate - instructions say "suppress the FAB on Settings, Profile, Details" but "MUST ONLY render the FAB if screen's primary purpose aligns". On a dashboard, a 'Cart' FAB is common.) -->
-<button class="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-primary text-on-primary shadow-2xl flex items-center justify-center purple-glow z-40 active:scale-90 transition-transform">
+<button class="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-primary text-on-primary shadow-2xl flex items-center justify-center purple-glow z-40 active:scale-90 transition-transform" data-nav="cart">
 <span class="material-symbols-outlined text-[28px]" data-icon="shopping_basket" style="font-variation-settings: 'FILL' 1;">shopping_basket</span>
 <div class="absolute -top-1 -right-1 bg-error text-on-error rounded-full w-5 h-5 flex items-center justify-center text-[10px] font-bold">2</div>
 </button>
