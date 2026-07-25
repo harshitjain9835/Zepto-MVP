@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zepto | My Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#ffdad6",
+            "on-surface": "#e5e2e1",
+            "surface-container": "#201f1f",
+            "on-tertiary": "#003739",
+            "on-tertiary-fixed-variant": "#004f53",
+            "on-error": "#690005",
+            "outline-variant": "#4a4451",
+            "surface-dim": "#131313",
+            "outline": "#968e9d",
+            "error": "#ffb4ab",
+            "tertiary-container": "#003032",
+            "secondary-fixed-dim": "#ffb3b1",
+            "on-secondary-fixed-variant": "#92001c",
+            "primary-fixed": "#ecdcff",
+            "surface-container-low": "#1c1b1b",
+            "on-surface-variant": "#ccc3d3",
+            "inverse-primary": "#7247b1",
+            "inverse-on-surface": "#313030",
+            "on-background": "#e5e2e1",
+            "on-primary-container": "#a77cea",
+            "inverse-surface": "#e5e2e1",
+            "on-primary": "#410d80",
+            "on-secondary-container": "#ffb3b0",
+            "surface-tint": "#d6baff",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary-fixed": "#280056",
+            "primary": "#d6baff",
+            "primary-container": "#3b007a",
+            "secondary-container": "#a90022",
+            "surface-bright": "#393939",
+            "surface": "#131313",
+            "on-secondary-fixed": "#410007",
+            "surface-variant": "#353534",
+            "secondary": "#ffb3b1",
+            "primary-fixed-dim": "#d6baff",
+            "tertiary-fixed-dim": "#00dce5",
+            "tertiary-fixed": "#63f7ff",
+            "tertiary": "#00dce5",
+            "surface-container-high": "#2a2a2a",
+            "surface-container-highest": "#353534",
+            "error-container": "#93000a",
+            "background": "#131313",
+            "on-primary-fixed-variant": "#592d98",
+            "on-tertiary-fixed": "#002021",
+            "on-secondary": "#680011",
+            "on-tertiary-container": "#00a1a8",
+            "secondary-fixed": "#ffdad8"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-desktop": "24px",
+            "stack-sm": "8px",
+            "margin-mobile": "16px",
+            "gutter": "12px",
+            "stack-lg": "24px",
+            "stack-xs": "4px",
+            "unit": "4px",
+            "stack-md": "16px"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+            "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #121212;
+      color: #e5e2e1;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-badge {
+      background: rgba(226, 55, 68, 0.8);
+      backdrop-filter: blur(12px);
+    }
+    .stepper-active {
+      box-shadow: 0 0 12px rgba(59, 0, 122, 0.2);
+    }
+    .primary-gradient {
+      background: linear-gradient(135deg, #3b007a 0%, #E23744 100%);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface flex flex-col min-h-screen">
+<!-- Top Navigation Shell -->
+<header class="bg-surface sticky top-0 z-50 shadow-sm flex flex-col gap-2 p-4 w-full">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-stack-sm">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high rounded-full transition-colors">arrow_back</button>
+<h1 class="text-headline-md font-headline-md text-on-surface">My Cart</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-primary">Delivery in 10 mins</span>
+<span class="text-label-sm font-label-sm text-outline">Home • Sector 45</span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow p-margin-mobile md:p-margin-desktop max-w-3xl mx-auto w-full pb-32">
+<!-- Delivery Time Estimate Badge -->
+<div class="mb-stack-lg glass-badge rounded-xl p-4 flex items-center justify-between text-white">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<div>
+<p class="text-label-lg font-label-lg">Arriving in 8-10 mins</p>
+<p class="text-label-sm font-label-sm opacity-90">Instant delivery from your nearest dark store</p>
+</div>
+</div>
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<!-- Cart Items List -->
+<div class="space-y-stack-md">
+<!-- Item 1 -->
+<div class="bg-surface-container rounded-xl p-4 flex gap-stack-md border border-white/5 items-center">
+<div class="w-20 h-20 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="High-quality close-up studio shot of a 1-liter carton of premium organic whole milk on a dark, reflective surface. The lighting is dramatic with neon purple accents hitting the edges of the carton, creating a modern and clean tech-forward commerce aesthetic. The background is a deep charcoal grey with subtle lens flares." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQyqNeQcF9-816Wg0zYywkSh3R6YuCBAsGW6afXG5JDQSI3bVpVLe-Q7PX0qtZyAAS1JKJvbKEjnGukIEa_d5jApvMeIP1Nm9768W4UUqwH8yTarslnd3YDHPwo6Qrxy-QAd9eU1r57rpfxtT6lusjPJ_SxyplJG40MoW0P_t3QnnTiSuWD0tMLjkVJtbzWy-wpN95zj2f6kE1Rtas9SGnfMu1J3ps1W8GXy0G6T7tpQDq7bIC6yZzq-UKE_J47ECcBy9Dt-3B-3ho"/>
+</div>
+<div class="flex-grow flex flex-col gap-1">
+<h3 class="text-label-lg font-label-lg text-on-surface">Nandini Fresh Milk</h3>
+<p class="text-label-sm font-label-sm text-outline">1 L</p>
+<p class="text-label-lg font-label-lg text-primary">₹54</p>
+</div>
+<div class="flex items-center bg-primary-container text-primary rounded-full p-1 stepper-active">
+<button class="material-symbols-outlined p-1 hover:bg-white/10 rounded-full transition-colors text-[20px]">remove</button>
+<span class="px-3 font-bold text-label-lg">2</span>
+<button class="material-symbols-outlined p-1 hover:bg-white/10 rounded-full transition-colors text-[20px]">add</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container rounded-xl p-4 flex gap-stack-md border border-white/5 items-center">
+<div class="w-20 h-20 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Vibrant top-down photography of a cluster of perfectly ripe, yellow Cavendish bananas on a sleek dark surface. The lighting is sharp and emphasizes the texture and saturation of the yellow against the dark background. Neon magenta light trails surround the fruit to suggest speed and freshness in a dark-mode UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC84PrbyczrlD-U8VR41kaityQYbxxI8q68FU95nVOoDtTDHB9UhlNs8N-bQlDIQUyj05eaGwVSH_Vlls8JeinzUgx4aoetjZQ1Dxd3k1WR0T3IJXNJ7a7mF4hOKPuOq6j7QVeqw1-JhCZHoMx3yaiEPWQUtZRvzgwotREXqUKZl7WEGGRrucPJn1gLPSTnJWdZenvXWTuqK3BLmS0Mk84AyWNoHfQ7S7zHstV1jNUYPeBPXKYI7xSO02g0IgSdKqzycIjviaGLS6r6"/>
+<div class="absolute bottom-1 right-1 glass-badge px-2 py-0.5 rounded text-[10px] font-bold text-white flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">bolt</span> FAST
+          </div>
+</div>
+<div class="flex-grow flex flex-col gap-1">
+<h3 class="text-label-lg font-label-lg text-on-surface">Organic Bananas</h3>
+<p class="text-label-sm font-label-sm text-outline">500 g</p>
+<p class="text-label-lg font-label-lg text-primary">₹32</p>
+</div>
+<div class="flex items-center bg-primary-container text-primary rounded-full p-1 stepper-active">
+<button class="material-symbols-outlined p-1 hover:bg-white/10 rounded-full transition-colors text-[20px]">remove</button>
+<span class="px-3 font-bold text-label-lg">1</span>
+<button class="material-symbols-outlined p-1 hover:bg-white/10 rounded-full transition-colors text-[20px]">add</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container rounded-xl p-4 flex gap-stack-md border border-white/5 items-center opacity-80">
+<div class="w-20 h-20 bg-surface-container-highest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A bag of premium dark roast coffee beans positioned on a minimalist black stone slab. Subtle purple ambient glow illuminates the bag's metallic details. The visual style is premium and cinematic, fitting for a high-end delivery service that values quality and speed. Depth is suggested through soft-focus elements in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDag4q-XOU9UT2yIlHnFEsir4ZQ-R5_wKfbcGNxRd_7D8Qk5f3jiEfTpoXnIs2jeT9P3BbMoAnigchS9TPYyBLXw8RECYIp2Q5Cen3qVNHRvllDpLiZspKoqgpKJDpSpFtQNg7SzPn5PWVlsAWnkMvlzOS_-JLYPlLmz21aRTGWzczDBAweoIXBVZV6ZElrgcPlflCEXG3iYmuFfBogEViyJhSYIX34vBUMCD3axoPQjZHqa2nhoNgVngq3fT6ThDR-I0Rk__cgKxVr"/>
+</div>
+<div class="flex-grow flex flex-col gap-1">
+<h3 class="text-label-lg font-label-lg text-on-surface">Blue Tokai Coffee</h3>
+<p class="text-label-sm font-label-sm text-outline">250 g</p>
+<p class="text-label-lg font-label-lg text-primary">₹450</p>
+</div>
+<div class="flex items-center bg-surface-container-highest text-on-surface-variant rounded-full p-1">
+<button class="material-symbols-outlined p-1 hover:bg-white/10 rounded-full transition-colors text-[20px]">remove</button>
+<span class="px-3 font-bold text-label-lg">1</span>
+<button class="material-symbols-outlined p-1 hover:bg-white/10 rounded-full transition-colors text-[20px]">add</button>
+</div>
+</div>
+</div>
+<!-- Frequently Bought Together / Add-ons -->
+<section class="mt-stack-lg">
+<h2 class="text-label-lg font-label-lg mb-stack-md text-outline">Don't forget these</h2>
+<div class="flex gap-stack-md overflow-x-auto pb-4 no-scrollbar">
+<!-- Chip Suggestion -->
+<div class="flex-shrink-0 bg-surface-container-low border border-white/5 p-3 rounded-xl w-40">
+<img class="w-full h-24 object-cover rounded-lg mb-2" data-alt="A single loaf of artisan sourdough bread captured in a professional product shot with dramatic, high-contrast side lighting. The dark environment makes the golden crust pop. Neon purple accents provide a modern commerce feel. The bread is shown on a dark textured wood surface, creating an atmosphere of freshness and high-quality grocery items." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoQmUfIESb7rNVFPVYgvNoYsr4zhJsDZEPyrcGRtEIZl7vBc5h2SXdnMbkEtOGUSJL_VhbkqmBhz4N0iWqQirR7vMhkJbz1Oy1UT0yf_ZK1OG832nJyXZF2eb1q7rQIFX9VBKFbc3zZ7jIKVriUOjLm4i4fJRnIrXnuHgRGxEQub9kS-_Z86y04K_yoM-s65CsFdqqT8wuD7Z4Diw1oCo80ryC2KOyCno68reAC5OES-FGbD2E1NqnrP6J6DJHRqastpu-CwEvzU8I"/>
+<p class="text-label-sm font-label-sm truncate">Artisan Bread</p>
+<div class="flex items-center justify-between mt-2">
+<span class="text-label-sm font-bold text-on-surface">₹65</span>
+<button class="bg-primary-container text-primary rounded-lg px-2 py-1 text-[10px] font-bold uppercase hover:scale-95 transition-transform">+ ADD</button>
+</div>
+</div>
+<!-- Chip Suggestion 2 -->
+<div class="flex-shrink-0 bg-surface-container-low border border-white/5 p-3 rounded-xl w-40">
+<img class="w-full h-24 object-cover rounded-lg mb-2" data-alt="A block of premium salted butter wrapped in minimalist gold foil, sitting on a dark grey ceramic dish. The lighting is soft and focused, emphasizing the luxurious quality of the product. The overall aesthetic is dark-mode friendly with deep shadows and subtle purple glows in the reflective gold surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvPWo6RuCe0y9jF01cZ4K_oa0gP4RMjE7HfQB5lou_r3sL6W4eZ-7HfSNDJ19OHPgIp1NfmJ_dQildMnUWTEmmo0tokFgOoVe560zV_DPjIv_gBvj-WVgj3mhTnxbaJZL_ZO83epEmq03CAFnA0bj6HXw_9QcZmH7d6tE3s-VuFclOm1x51lMYI0QaVSANW3CJVU4AFcZz-T7wGH7h1THHnh6GH5l_8ixR8LafVq5esBkbsgfzRuYV-Nce4X1T3lM4OEUJqG39vtwL"/>
+<p class="text-label-sm font-label-sm truncate">Premium Butter</p>
+<div class="flex items-center justify-between mt-2">
+<span class="text-label-sm font-bold text-on-surface">₹58</span>
+<button class="bg-primary-container text-primary rounded-lg px-2 py-1 text-[10px] font-bold uppercase hover:scale-95 transition-transform">+ ADD</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Billing Summary -->
+<div class="mt-stack-lg bg-surface-container-low rounded-xl p-stack-md space-y-3 border border-white/5">
+<h2 class="text-label-lg font-label-lg border-b border-white/10 pb-2 mb-2">Bill Summary</h2>
+<div class="flex justify-between text-body-md text-on-surface-variant">
+<span>Item Total (4 items)</span>
+<span>₹590</span>
+</div>
+<div class="flex justify-between text-body-md text-on-surface-variant">
+<span>Delivery Fee</span>
+<div class="flex items-center gap-1">
+<span class="line-through text-outline">₹25</span>
+<span class="text-tertiary">FREE</span>
+</div>
+</div>
+<div class="flex justify-between text-body-md text-on-surface-variant">
+<span>Handling Charge</span>
+<span>₹2</span>
+</div>
+<div class="flex justify-between text-headline-md font-headline-md pt-2 text-on-surface">
+<span>To Pay</span>
+<span>₹592</span>
+</div>
+</div>
+<!-- Savings Badge -->
+<div class="mt-stack-md bg-tertiary-container/30 border border-tertiary/20 rounded-lg p-3 flex items-center gap-stack-sm text-on-tertiary-container">
+<span class="material-symbols-outlined text-tertiary">redeem</span>
+<p class="text-label-sm font-label-sm">You saved ₹25 on delivery fee for this order!</p>
+</div>
+</main>
+<!-- Proceed to Pay Sticky Bottom -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface-container/80 backdrop-blur-md p-4 border-t border-white/10">
+<div class="max-w-3xl mx-auto flex items-center justify-between gap-stack-md">
+<div class="hidden md:flex flex-col">
+<span class="text-label-sm text-outline">Total Amount</span>
+<span class="text-headline-md text-on-surface">₹592</span>
+</div>
+<button class="primary-gradient text-white w-full py-4 rounded-xl font-bold text-body-lg flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-[0_4px_20px_rgba(226,55,68,0.3)]">
+        Proceed to Pay
+        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<script>
+    // Simple micro-interaction for buttons
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.classList.add('scale-95');
+        setTimeout(() => this.classList.remove('scale-95'), 150);
+      });
+    });
+  </script>
+<script src="../app-router.js"></script>
+</body></html>

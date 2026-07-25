@@ -1,0 +1,40 @@
+# Netlify configuration for Zepto Prototype
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Root of the deployable static files
+  publish = "stitch_zepto_mobile_ui/stitch_zepto_quick_commerce_mobile_ui"
+  # No build command — pure static HTML/JS
+  command = ""
+
+# ── Security & performance headers ───────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options         = "DENY"
+    X-Content-Type-Options  = "nosniff"
+    Referrer-Policy         = "strict-origin-when-cross-origin"
+    Permissions-Policy      = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# ── Redirects ─────────────────────────────────────────────────────────────────
+# Redirect bare domain root → entry point
+[[redirects]]
+  from   = "/"
+  to     = "/index.html"
+  status = 200
+
+# Catch-all: send unknown paths back to entry so the flow router can handle it
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zepto Prototype Flow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background: radial-gradient(circle at 10% 10%, #3b007a 0%, #131313 45%, #0e0e0e 100%);
+      color: #e5e2e1;
+      min-height: 100vh;
+    }
+    .card-stroke {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+    }
+    .cta {
+      background: linear-gradient(135deg, #3b007a 0%, #a90022 100%);
+      box-shadow: 0 8px 32px rgba(59, 0, 122, 0.45);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center px-6">
+  <main class="w-full max-w-lg rounded-2xl bg-[#201f1fcc] card-stroke p-6 space-y-5">
+    <p class="text-xs uppercase tracking-[0.18em] text-[#d6baff]">Velocity Dark Mode</p>
+    <h1 class="text-3xl font-extrabold leading-tight">Zepto multi-page prototype</h1>
+    <p class="text-sm text-[#ccc3d3]">This deployment starts at Home Dashboard and advances to the next screen on each click.</p>
+
+    <a href="home_dashboard/code.html" class="cta w-full inline-flex justify-center rounded-xl py-3.5 font-bold active:scale-95 transition-transform">
+      Launch Flow
+    </a>
+
+    <div class="rounded-xl bg-[#131313] p-4 text-sm text-[#ccc3d3] space-y-2">
+      <p class="font-semibold text-[#e5e2e1]">Flow order</p>
+      <p>Home -> Search -> Cart 1 -> Cart 2 -> Checkout with AI -> Trust Overlay -> Final Confirmation -> Home</p>
+    </div>
+  </main>
+</body>
+</html>

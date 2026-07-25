@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zepto | Checkout Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .swipe-track {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .glass-card {
+            background: #1E1E1E;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#00dce5",
+                        "surface-container": "#201f1f",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#d6baff",
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#4a4451",
+                        "on-secondary-container": "#ffb3b0",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-bright": "#393939",
+                        "tertiary-fixed-dim": "#00dce5",
+                        "primary": "#d6baff",
+                        "on-tertiary-fixed": "#002021",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary": "#ffb3b1",
+                        "on-tertiary": "#003739",
+                        "on-primary": "#410d80",
+                        "surface-variant": "#353534",
+                        "on-background": "#e5e2e1",
+                        "tertiary-fixed": "#63f7ff",
+                        "primary-container": "#3b007a",
+                        "on-tertiary-container": "#00a1a8",
+                        "on-secondary": "#680011",
+                        "inverse-primary": "#7247b1",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed-variant": "#92001c",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-container": "#003032",
+                        "on-surface-variant": "#ccc3d3",
+                        "on-secondary-fixed": "#410007",
+                        "on-tertiary-fixed-variant": "#004f53",
+                        "background": "#131313",
+                        "primary-fixed": "#ecdcff",
+                        "on-primary-container": "#a77cea",
+                        "secondary-fixed-dim": "#ffb3b1",
+                        "surface-container-highest": "#353534",
+                        "outline": "#968e9d",
+                        "on-error": "#690005",
+                        "surface-dim": "#131313",
+                        "on-primary-fixed": "#280056",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#ffdad8",
+                        "primary-fixed-dim": "#d6baff",
+                        "on-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#592d98",
+                        "surface": "#131313",
+                        "secondary-container": "#a90022"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack-xs": "4px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "24px",
+                        "margin-desktop": "24px",
+                        "gutter": "12px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col selection:bg-primary selection:text-on-primary-container">
+<!-- Success Banner -->
+<div class="bg-[#2D6A4F] py-3 px-margin-mobile flex items-center justify-center gap-2 sticky top-0 z-[60] shadow-md">
+<span class="text-white font-label-lg text-center">🎉 Smart Add! You saved ₹50 on separate shipping by combining your order.</span>
+</div>
+<!-- Top App Bar -->
+<header class="bg-surface dark:bg-surface-dim flex flex-col gap-2 p-4 w-full shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors">arrow_back</button>
+<h1 class="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim">Checkout</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border-2 border-primary-container shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a stylish young individual with warm lighting against a dark charcoal background, matching the Zepto brand aesthetic of modern speed and sophistication. The person wears a sleek dark hoodie and looks confidently at the camera." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8CgEf5oo1W0N_-ndHyVEvP-qI65dJUY67GhUcexN5wqweOXS2aWhawaZxhX7kN737Tq2cBYh5Nbwgmim2bJsoOILIlC3p1zdfETCEzhkBwnvVoqtP0u5VOouK3-rabaechc02qtT4lV_9vrW_hLrh9htVPYw2Fhvl836R6jq9gQoJ-nFBbzRs3XygElVDrR4QHYKIczEJH9P3rGf4lmN2EMjXVqSaG-3Ybu0v7IoE9VU2F7sba_fEfutaj57XsXkXkUrODpE0EhdJ"/>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex flex-col">
+<span class="text-label-lg font-label-lg text-on-surface">Delivery in 10 mins</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-label-sm font-label-sm">Koramangala, 4th Block</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<main class="flex-1 px-margin-mobile py-stack-md space-y-stack-lg max-w-2xl mx-auto w-full pb-32">
+<!-- Header & Delivery Badge -->
+<section class="flex flex-col gap-stack-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface">Your Cart (4 Items)</h2>
+<div class="inline-flex items-center gap-2 bg-[#E23744] bg-opacity-90 backdrop-blur-md px-3 py-1.5 rounded-full w-fit">
+<span class="material-symbols-outlined text-white text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-white font-label-sm tracking-wide">8 Mins to Koramangala</span>
+</div>
+</section>
+<!-- Item List -->
+<section class="space-y-stack-sm">
+<!-- Item 1 -->
+<div class="glass-card p-4 rounded-xl flex gap-4 items-center">
+<div class="w-16 h-16 bg-white rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-contain p-1" data-alt="High-resolution commercial photography of an Amul Taaza Milk 1-liter carton against a clean studio backdrop. The packaging is crisp, highlighting the fresh dairy product with cool, professional lighting in a modern dark-mode setting with purple neon reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACNYo4EF03b-suChCAMJejD5LqNZ34JhE3W4sum_2wUBYtpFVXt_DRZbHHaeRKGzPsIqHtCJZsgzmtrDAiQFZZqlmyHlysn7r-rTH0m-RqeNQGN6X2lmDVdaZ6J2WnQe8wFCO-UKxeVB3-uR0s26xn4-2CJstvL44-c-T2lS-uQxLZLL7OudQe8LZZOq32qQHIbYWHtfFzE7cBMlrfis4JMh2YgBSbdajXbwAooaJ1mXwAaHUVMDeTkHalf3xKOZKUM1LDqHes2gym"/>
+</div>
+<div class="flex-1">
+<h3 class="font-label-lg text-on-surface">Amul Taaza Homogenised Milk 1L</h3>
+<p class="text-on-surface-variant text-label-sm">500ml x 2</p>
+</div>
+<div class="text-right flex flex-col items-end gap-1">
+<span class="font-headline-md text-primary">₹52</span>
+<div class="flex items-center gap-2 bg-surface-container-high rounded-full px-2 py-1">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">remove</span>
+<span class="text-label-sm font-bold w-4 text-center">1</span>
+<span class="material-symbols-outlined text-sm text-primary">add</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="glass-card p-4 rounded-xl flex gap-4 items-center">
+<div class="w-16 h-16 bg-white rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-contain p-1" data-alt="Close-up studio shot of a Doritos Nacho Cheese pack, 100g size, with vibrant orange branding. The pack is perfectly lit to show texture and gloss, positioned against a dark background with subtle magenta and purple atmospheric glow that represents a high-energy snack aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFTd-9wrr3k8HicSgk_SLUmHja4iETWDDElDBBCCdwYoZ-ECiuXlZt12UjzIyxLmO7f1cekV_fWVrfJaSr7KV1RLv7vNFsfb9ll6N7US5Xy7gKxZmSMy8bd-ecvj7TEAEp5enMdA4xLDZjL4NYDJ8gWX_Lrc81JwMk33wmkxG9fh7uISVv3IvWq_26xaD5MKxBsw3w8njL0AVRGhloFLCjbOIW4H1qf-JZrChwJCEIJ2PAmR50arADS-EX7Fh6j_X58iN7uBKwT03Y"/>
+</div>
+<div class="flex-1">
+<h3 class="font-label-lg text-on-surface">Doritos Nacho Cheese Chips 100g</h3>
+<p class="text-on-surface-variant text-label-sm">Tangy & Crispy</p>
+</div>
+<div class="text-right flex flex-col items-end gap-1">
+<span class="font-headline-md text-primary">₹100</span>
+<div class="flex items-center gap-2 bg-surface-container-high rounded-full px-2 py-1">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">remove</span>
+<span class="text-label-sm font-bold w-4 text-center">1</span>
+<span class="material-symbols-outlined text-sm text-primary">add</span>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="glass-card p-4 rounded-xl flex gap-4 items-center">
+<div class="w-16 h-16 bg-white rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-contain p-1" data-alt="A cold, condensation-covered Red Bull Energy Drink 250ml can. The silver and blue design pops against a deep charcoal environment. Dramatic lighting accents the rim of the can with a hint of purple neon, conveying extreme energy and speed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTNmxCL0HCpfMZoYgFJEAK3aeY2rM7MIeNS9E6OEd2zfZ43VEw4q2Ofdgm2mfqtvPWUVhS_Qdujvj0jyW50trQvoI2VEgcCzS8p24Fdc_QLHw0ShZ2ffsCM9he6kdiO224PwUMG3XCuiyo3UjKs0vy7-r8ANwhqyVdtLhEDNTHHEvZMa9BulsmPDwJummg9qBv9eH-lC4icQD3IPfTOcB-LvEmntayr5--i3ytygMRnWvKLvz0fkJM9JyycYdAi_k64iZZPBnQE3a0"/>
+</div>
+<div class="flex-1">
+<h3 class="font-label-lg text-on-surface">Red Bull Energy Drink 250ml</h3>
+<p class="text-on-surface-variant text-label-sm">High Caffeine</p>
+</div>
+<div class="text-right flex flex-col items-end gap-1">
+<span class="font-headline-md text-primary">₹125</span>
+<div class="flex items-center gap-2 bg-surface-container-high rounded-full px-2 py-1">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">remove</span>
+<span class="text-label-sm font-bold w-4 text-center">1</span>
+<span class="material-symbols-outlined text-sm text-primary">add</span>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="glass-card p-4 rounded-xl flex gap-4 items-center">
+<div class="w-16 h-16 bg-white rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-contain p-1" data-alt="Modern Anker 20W Type-C Fast Adapter in white, showcased in a minimalist tech product photography style. The charger is crisp and sharp, set against a dark grey background with a subtle purple backlight, highlighting its premium build and high-speed charging capabilities." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPisD4ymeRNRCXxUfgy1d4U88Ano_zhTuTfALp1QMn27R7QaL9ZX3p1B_pjnqJDUj0SRVpZzUTG_Vl4kD8zeo1p438mFM3UMeQg-oIPh05rT6CLNWQhz388hg9uF91KyOItD5HD3rV2aeOx46PKm-Rm1RtZoa_uTZMg9hfPrVl7Yzhuo3Ac9zSEgdh5wKLT-8Zn4ymd0u1VthsGNN1oc9L-jsAJmVlZodOe_wLP43mkzuBHdKEr0nIjvbn3Li-mGG7c9bgf7YJJ6uH"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<h3 class="font-label-lg text-on-surface">Anker 20W Type-C Fast Adapter</h3>
+<span class="bg-[#2D6A4F] text-white text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">🔒 Warranted</span>
+</div>
+<p class="text-on-surface-variant text-label-sm">White • PD Support</p>
+</div>
+<div class="text-right flex flex-col items-end gap-1">
+<span class="font-headline-md text-primary">₹899</span>
+<div class="flex items-center gap-2 bg-surface-container-high rounded-full px-2 py-1">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">remove</span>
+<span class="text-label-sm font-bold w-4 text-center">1</span>
+<span class="material-symbols-outlined text-sm text-primary">add</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bill Summary Card -->
+<section class="glass-card p-5 rounded-xl space-y-4 shadow-lg border-primary-container/20">
+<h4 class="font-headline-md text-on-surface">Bill Summary</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="text-body-md">Item Total</span>
+<span class="font-headline-md text-on-surface">₹1,176</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-body-md text-on-surface-variant">Rider Delivery Fee</span>
+<span class="text-[10px] text-tertiary">Combined Dispatch Applied</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="text-body-md line-through text-outline">₹40</span>
+<span class="text-headline-md text-[#2D6A4F] font-bold">FREE</span>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-white/5 flex justify-between items-center">
+<span class="text-headline-md text-on-surface font-extrabold uppercase tracking-tight">Grand Total</span>
+<span class="text-headline-xl text-primary font-extrabold">₹1,176</span>
+</div>
+</section>
+<!-- Tip Section -->
+<div class="flex items-center gap-4 bg-surface-container-high p-4 rounded-xl">
+<span class="material-symbols-outlined text-secondary text-3xl">volunteer_activism</span>
+<div class="flex-1">
+<p class="text-label-lg font-bold">Rider Tip</p>
+<p class="text-label-sm text-on-surface-variant">Support your rider's hard work</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-full border border-outline text-label-sm hover:bg-primary-container transition-colors">₹20</button>
+<button class="px-3 py-1.5 rounded-full border border-outline text-label-sm hover:bg-primary-container transition-colors">₹30</button>
+</div>
+</div>
+</main>
+<!-- Bottom Sticky Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface-container dark:bg-surface-container-lowest backdrop-blur-md px-margin-mobile py-4 pb-safe border-t border-white/5">
+<div class="max-w-2xl mx-auto">
+<div class="relative swipe-track h-16 rounded-full overflow-hidden flex items-center shadow-inner group" id="swipe-container">
+<!-- Background Gradient Shimmer -->
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container via-secondary-container to-primary-container opacity-90 shimmer"></div>
+<!-- Interaction Text -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="text-white font-headline-md text-[18px] tracking-tight flex items-center gap-2">
+                        Swipe to Pay via UPI • ₹1,176
+                    </span>
+</div>
+<!-- Swipe Handle -->
+<div class="absolute left-1 w-14 h-14 bg-white rounded-full flex items-center justify-center cursor-pointer shadow-xl z-10 transition-transform duration-150 active:scale-95" id="swipe-handle">
+<span class="material-symbols-outlined text-secondary-container text-3xl font-black">keyboard_double_arrow_right</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for Swipe to Pay
+        const handle = document.getElementById('swipe-handle');
+        const container = document.getElementById('swipe-container');
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+
+        const maxSwipe = container.offsetWidth - handle.offsetWidth - 8;
+
+        const startDrag = (e) => {
+            isDragging = true;
+            startX = (e.type === 'touchstart') ? e.touches[0].clientX : e.clientX;
+            handle.style.transition = 'none';
+        };
+
+        const moveDrag = (e) => {
+            if (!isDragging) return;
+            const x = (e.type === 'touchmove') ? e.touches[0].clientX : e.clientX;
+            currentX = Math.max(0, Math.min(x - startX, maxSwipe));
+            handle.style.transform = `translateX(${currentX}px)`;
+            
+            // Opacity effect for text
+            const opacity = 1 - (currentX / maxSwipe);
+            container.querySelector('span').style.opacity = opacity;
+        };
+
+        const endDrag = () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            if (currentX > maxSwipe * 0.8) {
+                // Success State
+                handle.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                handle.style.transform = `translateX(${maxSwipe}px)`;
+                container.style.filter = 'hue-rotate(90deg)';
+                setTimeout(() => {
+                    alert('Order Placed Successfully! 🚀 Delivery in 8 minutes.');
+                    window.location.reload();
+                }, 400);
+            } else {
+                // Reset State
+                handle.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                handle.style.transform = 'translateX(0px)';
+                container.querySelector('span').style.opacity = 1;
+                currentX = 0;
+            }
+        };
+
+        handle.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousemove', moveDrag);
+        window.addEventListener('mouseup', endDrag);
+
+        handle.addEventListener('touchstart', startDrag);
+        window.addEventListener('touchmove', moveDrag);
+        window.addEventListener('touchend', endDrag);
+    </script>
+<script src="../app-router.js"></script>
+</body></html>

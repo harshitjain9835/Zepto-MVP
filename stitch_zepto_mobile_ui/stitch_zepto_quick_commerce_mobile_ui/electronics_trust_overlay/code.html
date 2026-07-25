@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#004f53",
+                        "on-error": "#690005",
+                        "on-secondary-fixed-variant": "#92001c",
+                        "secondary-container": "#a90022",
+                        "on-tertiary": "#003739",
+                        "surface-bright": "#393939",
+                        "on-primary-container": "#a77cea",
+                        "tertiary-container": "#003032",
+                        "on-surface-variant": "#ccc3d3",
+                        "surface-tint": "#d6baff",
+                        "on-secondary-fixed": "#410007",
+                        "on-primary": "#410d80",
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary": "#680011",
+                        "on-background": "#e5e2e1",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#ffb3b1",
+                        "tertiary-fixed": "#63f7ff",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-container": "#00a1a8",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#d6baff",
+                        "outline-variant": "#4a4451",
+                        "primary-fixed-dim": "#d6baff",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed": "#002021",
+                        "outline": "#968e9d",
+                        "surface-dim": "#131313",
+                        "tertiary-fixed-dim": "#00dce5",
+                        "surface-container": "#201f1f",
+                        "surface": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "primary-fixed": "#ecdcff",
+                        "secondary-fixed": "#ffdad8",
+                        "error-container": "#93000a",
+                        "secondary": "#ffb3b1",
+                        "tertiary": "#00dce5",
+                        "primary-container": "#3b007a",
+                        "on-primary-fixed-variant": "#592d98",
+                        "background": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-primary": "#7247b1",
+                        "on-primary-fixed": "#280056",
+                        "on-secondary-container": "#ffb3b0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "24px",
+                        "gutter": "12px",
+                        "stack-lg": "24px",
+                        "stack-xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bottom-sheet-transition {
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .bottom-sheet-active {
+            transform: translateY(0);
+        }
+        .glass-badge {
+            background: rgba(226, 55, 68, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-hidden">
+<!-- Background Screen: Shopping Cart (Dimmed Overlay) -->
+<div class="fixed inset-0 z-0 bg-surface-dim">
+<!-- Replicating Screen 3 with Dimming -->
+<div class="opacity-30 p-4 space-y-6">
+<header class="flex justify-between items-center">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+<h1 class="font-headline-md text-headline-md">My Cart</h1>
+<div class="w-8"></div>
+</header>
+<div class="bg-surface-container rounded-xl p-4 flex gap-4">
+<div class="w-16 h-16 bg-surface-container-high rounded-lg"></div>
+<div class="flex-1 space-y-1">
+<div class="h-4 bg-surface-container-high w-3/4 rounded"></div>
+<div class="h-3 bg-surface-container-high w-1/2 rounded"></div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="h-12 bg-surface-container rounded-lg w-full"></div>
+<div class="h-40 bg-surface-container rounded-lg w-full"></div>
+</div>
+</div>
+<!-- Dark Overlay -->
+<div class="absolute inset-0 bg-black/60"></div>
+</div>
+<!-- Bottom Sheet Interaction Trigger Layer -->
+<div class="fixed inset-0 z-10" id="backdrop" onclick="toggleSheet()"></div>
+<!-- Bottom Sheet Content -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest rounded-t-[16px] bottom-sheet-transition bottom-sheet-active shadow-[0_-8px_32px_rgba(0,0,0,0.5)]" id="bottom-sheet">
+<!-- Drag Handle -->
+<div class="w-full flex justify-center py-3">
+<div class="w-10 h-1 rounded-full bg-outline-variant"></div>
+</div>
+<!-- Sheet Header: Product Info -->
+<div class="px-margin-mobile pt-2 pb-stack-md flex items-start gap-4">
+<div class="relative w-24 h-24 shrink-0 bg-surface rounded-xl border border-white/5 overflow-hidden">
+<img class="w-full h-full object-contain p-2" data-alt="A professional studio product shot of the Anker 20W PowerPort III Nano Type-C adapter. The adapter is white with a minimalist design, sitting on a dark charcoal surface. Dramatic side lighting highlights its compact, cube-like form factor and the glossy finish of the plastic. High-contrast dark mode aesthetic with deep shadows and sharp highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKcBj8kNqrGgDvtwyCRv1SipEx_QzkdUGZL-q5Kn9srMoZ5qUc_aT8nBNl4jQU4g6eOvnIyDcd4WlAUaMe042JDJCB0ONidw2vBE9ub8pHJlDUoYFcZi57bRAxtBFjo5jVTRN98FtccOEAraVtoUbL3GQhXK_aZsd-8q2_1jYuEhPR0jdH5s-P3F56L-BoVuaFpZCfHuWzov8g4Kd7-Wy9Y6RtAj3uhqbMuQgoMpAB3NTRDUJGleIeRtg6npKnOPpB9BDbI9kXxbZB"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-5 h-5 flex items-center justify-center bg-white rounded-sm">
+<img class="w-4 h-4 object-contain" data-alt="The official Anker logo in a minimalist monochrome style. High-resolution vector style icon displayed on a clean white background, emphasizing premium brand recognition and technological authority in a tech-retail context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnqK_fTSlRC8KTD87PY2j3H8LuoTAQBbrDNTc6FeyMujQPUofSB3W1nK-dsTjvxeDPR25i3gY3Yt6usOtCgQCn30eROhVAjPr0I6hzL53yj_K5jVmlk0oRjYVaP4sg9Jo73oSB373x8eHIrduNqzSrkITXg30NH7oB4ZRr_EmKcOgOvckdjK5lte9USxhrZNUrBGncOaAgy5bASOueL0bNB_RZRTTZ1CpO7w6geSRrnLMz_MPsSjDuUTqePptoKWTNZ_iDfo4Tp7y0"/>
+</div>
+<span class="text-label-sm font-label-sm text-outline tracking-wider">ANKER OFFICIAL</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface leading-tight mb-2">Anker 20W Type-C Fast Adapter</h2>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-md font-headline-md text-primary">₹899</span>
+<span class="text-label-lg font-label-lg text-outline line-through">₹1,499</span>
+</div>
+</div>
+</div>
+<!-- Availability Badge -->
+<div class="px-margin-mobile mb-stack-lg">
+<div class="inline-flex items-center gap-2 bg-on-tertiary-fixed-variant/10 border border-on-tertiary-fixed-variant/20 py-2 px-3 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<p class="text-label-lg font-label-lg text-tertiary">
+                    In Stock • <span class="text-on-surface">Arrives with groceries in 8 mins</span>
+</p>
+</div>
+</div>
+<!-- Trust Guarantee Section -->
+<div class="px-margin-mobile space-y-stack-md mb-8">
+<!-- Row 1 -->
+<div class="flex items-start gap-stack-md group">
+<div class="mt-1 w-6 h-6 rounded-full bg-tertiary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary text-[16px] font-bold">check</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface">1-Year Brand Warranty</h3>
+<p class="text-label-sm font-normal text-on-surface-variant">Official manufacturer warranty included in invoice.</p>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="flex items-start gap-stack-md group">
+<div class="mt-1 w-6 h-6 rounded-full bg-tertiary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary text-[16px] font-bold">check</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface">Hassle-Free 7-Day Returns</h3>
+<p class="text-label-sm font-normal text-on-surface-variant">Instant doorstep pickup for hardware defects; no bots.</p>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="flex items-start gap-stack-md group">
+<div class="mt-1 w-6 h-6 rounded-full bg-tertiary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary text-[16px] font-bold">check</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface">Verified Original Stock</h3>
+<p class="text-label-sm font-normal text-on-surface-variant">Sealed packaging with authentic barcode verification.</p>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="p-margin-mobile border-t border-outline-variant/10 bg-surface-container-low/80 backdrop-blur-lg safe-bottom">
+<button class="w-full h-14 rounded-xl bg-gradient-to-r from-primary-container to-secondary-container text-white flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-lg shadow-primary-container/20" onclick="addToCart(this)">
+<span class="font-headline-md text-headline-md">Add to Cart</span>
+<span class="text-headline-md font-normal opacity-40">|</span>
+<span class="font-headline-md text-headline-md">₹899</span>
+</button>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        function toggleSheet() {
+            const sheet = document.getElementById('bottom-sheet');
+            const backdrop = document.getElementById('backdrop');
+            
+            if (sheet.classList.contains('bottom-sheet-active')) {
+                sheet.classList.remove('bottom-sheet-active');
+                backdrop.style.opacity = '0';
+                setTimeout(() => backdrop.style.display = 'none', 400);
+            } else {
+                backdrop.style.display = 'block';
+                setTimeout(() => {
+                    sheet.classList.add('bottom-sheet-active');
+                    backdrop.style.opacity = '1';
+                }, 10);
+            }
+        }
+
+        function addToCart(btn) {
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `
+                <span class="material-symbols-outlined animate-spin">progress_activity</span>
+                <span class="font-headline-md text-headline-md">Adding...</span>
+            `;
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.classList.remove('from-primary-container', 'to-secondary-container');
+                btn.classList.add('bg-tertiary');
+                btn.style.background = 'var(--tw-colors-tertiary)';
+                btn.innerHTML = `
+                    <span class="material-symbols-outlined text-on-tertiary">check_circle</span>
+                    <span class="font-headline-md text-headline-md text-on-tertiary">Added to Cart</span>
+                `;
+                
+                setTimeout(() => {
+                    toggleSheet();
+                }, 800);
+            }, 1000);
+        }
+    </script>
+<script src="../app-router.js"></script>
+</body></html>
