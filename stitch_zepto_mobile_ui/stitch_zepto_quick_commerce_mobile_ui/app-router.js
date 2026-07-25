@@ -15,7 +15,8 @@
   var navDestinations = {
     back: "BACK",
     home: "../home_dashboard/code.html",
-    cart: "../shopping_cart_1/code.html"
+    cart: "../shopping_cart_1/code.html",
+    search: "../search_explore/code.html"
   };
 
   function getCurrentScreen(pathname) {

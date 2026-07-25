@@ -1,293 +1,183 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Zepto | Search Everything</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-error-container": "#ffdad6",
-                        "on-surface": "#e5e2e1",
-                        "surface-container": "#201f1f",
-                        "on-tertiary": "#003739",
-                        "on-tertiary-fixed-variant": "#004f53",
-                        "on-error": "#690005",
-                        "outline-variant": "#4a4451",
-                        "surface-dim": "#131313",
-                        "outline": "#968e9d",
-                        "error": "#ffb4ab",
-                        "tertiary-container": "#003032",
-                        "secondary-fixed-dim": "#ffb3b1",
-                        "on-secondary-fixed-variant": "#92001c",
-                        "primary-fixed": "#ecdcff",
-                        "surface-container-low": "#1c1b1b",
-                        "on-surface-variant": "#ccc3d3",
-                        "inverse-primary": "#7247b1",
-                        "inverse-on-surface": "#313030",
-                        "on-background": "#e5e2e1",
-                        "on-primary-container": "#a77cea",
-                        "inverse-surface": "#e5e2e1",
-                        "on-primary": "#410d80",
-                        "on-secondary-container": "#ffb3b0",
-                        "surface-tint": "#d6baff",
-                        "surface-container-lowest": "#0e0e0e",
-                        "on-primary-fixed": "#280056",
-                        "primary": "#d6baff",
-                        "primary-container": "#3b007a",
-                        "secondary-container": "#a90022",
-                        "surface-bright": "#393939",
-                        "surface": "#131313",
-                        "on-secondary-fixed": "#410007",
-                        "surface-variant": "#353534",
-                        "secondary": "#ffb3b1",
-                        "primary-fixed-dim": "#d6baff",
-                        "tertiary-fixed-dim": "#00dce5",
-                        "tertiary-fixed": "#63f7ff",
-                        "tertiary": "#00dce5",
-                        "surface-container-high": "#2a2a2a",
-                        "surface-container-highest": "#353534",
-                        "error-container": "#93000a",
-                        "background": "#131313",
-                        "on-primary-fixed-variant": "#592d98",
-                        "on-tertiary-fixed": "#002021",
-                        "on-secondary": "#680011",
-                        "on-tertiary-container": "#00a1a8",
-                        "secondary-fixed": "#ffdad8"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "fontFamily": {
-                        "headline-md": ["Plus Jakarta Sans"],
-                        "label-sm": ["Plus Jakarta Sans"],
-                        "body-lg": ["Plus Jakarta Sans"],
-                        "body-md": ["Plus Jakarta Sans"],
-                        "label-lg": ["Plus Jakarta Sans"],
-                        "headline-lg-mobile": ["Plus Jakarta Sans"],
-                        "headline-xl": ["Plus Jakarta Sans"],
-                        "headline-lg": ["Plus Jakarta Sans"]
-                    },
-                    "fontSize": {
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
-                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
-                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
-                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
-                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
-                    }
-                }
-            }
-        }
-    </script>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Zepto | Search</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #131313;
-            color: #e5e2e1;
-        }
-        .glass-badge {
-            background: rgba(226, 55, 68, 0.85);
-            backdrop-filter: blur(12px);
-        }
-        .neon-glow {
-            box-shadow: 0 0 15px rgba(59, 0, 122, 0.3);
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #353534;
-            border-radius: 10px;
-        }
-        .search-ring:focus-within {
-            box-shadow: 0 0 0 2px #d6baff;
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="flex flex-col min-h-screen">
-<!-- Top Navigation Header -->
-<header class="sticky top-0 z-50 bg-surface dark:bg-surface-dim shadow-sm flex flex-col gap-2 p-4 w-full">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">location_on</span>
-<div>
-<h1 class="text-label-lg font-label-lg text-primary">Delivery in 10 mins</h1>
-<p class="text-xs text-on-surface-variant">HSR Layout, Sector 7</p>
-</div>
-</div>
-<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a young adult with friendly expression, set against a vibrant purple and magenta neon gradient background. The lighting is crisp and modern, reflecting a high-end tech aesthetic with soft shadows and high contrast, matching a dark mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPjxlBfgmQA_e1adBWxpfw9gqQPPnTyX5ofB6so8wI0QBpvz3AjzS6PtpZO-2fb550E2_Gf-CNiyiI-Dn1lqARQwBAUu6jsXOGTFwBwqZThdA_q0jSPqXVgQwpRNi-v784IF6r_pDW0zrZYdIMD3b-Yg_nTYsQ1-Y4i0Bh2Qe-cMX9ROPVvdQK0vOSfzSBWFP8wrN-SbKUPrWqB8Y7-Hfjmk9Z6f7sIzXM_BCyjIy5sHM4t97HfR8ZjmJleff4wUrQ_HkrFivaVRws"/>
-</div>
-</div>
-<!-- Active Search Bar -->
-<div class="mt-2 group relative">
-<div class="flex items-center bg-surface-container h-14 rounded-full px-5 gap-3 search-ring transition-all duration-300 border border-outline-variant/20">
-<span class="material-symbols-outlined text-outline">search</span>
-<input autofocus="" class="bg-transparent border-none focus:ring-0 w-full text-body-md placeholder:text-outline/60 text-on-surface" placeholder="Search for 'Milk'" type="text"/>
-<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">mic</span>
-</div>
-</div>
-</header>
-<!-- Main Content -->
-<main class="flex-1 px-4 py-6 custom-scrollbar overflow-y-auto mb-20">
-<!-- Trending Searches -->
-<section class="mb-8">
-<div class="flex items-center gap-2 mb-4">
-<span class="material-symbols-outlined text-secondary text-xl">trending_up</span>
-<h2 class="text-label-lg font-label-lg text-on-surface">Trending Searches</h2>
-</div>
-<div class="flex flex-wrap gap-2">
-<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-primary transition-all text-label-lg border border-outline-variant/10">Mangoes</button>
-<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-primary transition-all text-label-lg border border-outline-variant/10">Milk</button>
-<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-primary transition-all text-label-lg border border-outline-variant/10">Ice Cream</button>
-<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-primary transition-all text-label-lg border border-outline-variant/10">Cold Drinks</button>
-<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-primary transition-all text-label-lg border border-outline-variant/10">Maggi</button>
-<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-primary transition-all text-label-lg border border-outline-variant/10">Bread</button>
-</div>
-</section>
-<!-- Recently Searched -->
-<section class="mb-8">
-<div class="flex items-center justify-between mb-4">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-outline text-xl">history</span>
-<h2 class="text-label-lg font-label-lg text-on-surface">Recently Searched</h2>
-</div>
-<button class="text-primary text-xs font-bold uppercase tracking-wider">Clear All</button>
-</div>
-<div class="space-y-1">
-<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors group">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-outline/50 group-hover:text-primary">schedule</span>
-<span class="text-body-md text-on-surface-variant">Greek Yogurt</span>
-</div>
-<span class="material-symbols-outlined text-outline/30 text-sm cursor-pointer hover:text-error">close</span>
-</div>
-<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors group">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-outline/50 group-hover:text-primary">schedule</span>
-<span class="text-body-md text-on-surface-variant">Organic Bananas</span>
-</div>
-<span class="material-symbols-outlined text-outline/30 text-sm cursor-pointer hover:text-error">close</span>
-</div>
-</div>
-</section>
-<!-- Categories Bento Grid -->
-<section class="mb-12">
-<h2 class="text-headline-md font-headline-md mb-6 text-on-surface px-1">Categories</h2>
-<div class="grid grid-cols-2 gap-4">
-<!-- Bento Item 1: Large -->
-<div class="col-span-1 h-44 rounded-2xl bg-[#2a1b3d] p-4 flex flex-col justify-between relative overflow-hidden group cursor-pointer border border-white/5 active:scale-95 transition-all">
-<div class="z-10">
-<p class="text-headline-md font-headline-md leading-tight">Fresh<br/>Vegetables</p>
-<span class="inline-block mt-2 px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">Farm Fresh</span>
-</div>
-<div class="absolute -right-4 -bottom-4 opacity-80 group-hover:scale-110 transition-transform duration-500">
-<span class="material-symbols-outlined text-[100px] text-primary/30" style="font-variation-settings: 'FILL' 1;">eco</span>
-</div>
-</div>
-<!-- Bento Item 2: Vertical Stack -->
-<div class="flex flex-col gap-4">
-<div class="h-20 rounded-2xl bg-[#3d1b1b] p-3 flex items-center gap-3 relative overflow-hidden group cursor-pointer border border-white/5 active:scale-95 transition-all">
-<div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center">
-<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">egg_alt</span>
-</div>
-<p class="font-bold text-sm">Dairy &amp;<br/>Eggs</p>
-</div>
-<div class="h-20 rounded-2xl bg-[#1b3d3d] p-3 flex items-center gap-3 relative overflow-hidden group cursor-pointer border border-white/5 active:scale-95 transition-all">
-<div class="w-12 h-12 bg-tertiary/10 rounded-xl flex items-center justify-center">
-<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">icecream</span>
-</div>
-<p class="font-bold text-sm">Frozen<br/>Treats</p>
-</div>
-</div>
-<!-- Bento Item 3: Wide -->
-<div class="col-span-2 h-28 rounded-2xl bg-surface-container p-4 flex items-center justify-between border border-white/5 relative overflow-hidden group cursor-pointer active:scale-95 transition-all">
-<div class="space-y-1">
-<p class="text-headline-md font-headline-md">Munchies &amp; Snacks</p>
-<p class="text-xs text-on-surface-variant">Chips, Biscuits &amp; More</p>
-</div>
-<div class="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform">
-<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">fastfood</span>
-</div>
-</div>
-<!-- Bento Items 4 & 5 -->
-<div class="h-32 rounded-2xl bg-[#2d3d1b] p-4 flex flex-col justify-between border border-white/5 group cursor-pointer active:scale-95 transition-all">
-<span class="material-symbols-outlined text-white text-3xl">restaurant</span>
-<p class="font-bold text-sm leading-tight">Instant<br/>Food</p>
-</div>
-<div class="h-32 rounded-2xl bg-[#1b253d] p-4 flex flex-col justify-between border border-white/5 group cursor-pointer active:scale-95 transition-all">
-<span class="material-symbols-outlined text-white text-3xl">home_repair_service</span>
-<p class="font-bold text-sm leading-tight">Home<br/>Essentials</p>
-</div>
-</div>
-</section>
-</main>
-<!-- Bottom Navigation Bar -->
-<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container dark:bg-surface-container-lowest backdrop-blur-md shadow-[0_-4px_12px_rgba(59,0,122,0.15)] flex justify-around items-center px-4 py-3 pb-safe rounded-t-xl">
-<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors cursor-pointer group" data-nav="home">
-<span class="material-symbols-outlined group-hover:scale-110 transition-transform">bolt</span>
-<span class="text-label-sm font-label-sm">Zepto</span>
-</div>
-<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors cursor-pointer group">
-<span class="material-symbols-outlined group-hover:scale-110 transition-transform">grid_view</span>
-<span class="text-label-sm font-label-sm">Categories</span>
-</div>
-<!-- Active Search State implied by current screen -->
-<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold scale-110 transition-transform cursor-pointer">
-<div class="w-12 h-1 bg-primary absolute -top-3 rounded-full"></div>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
-<span class="text-label-sm font-label-sm">Search</span>
-</div>
-<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors cursor-pointer group">
-<span class="material-symbols-outlined group-hover:scale-110 transition-transform">receipt_long</span>
-<span class="text-label-sm font-label-sm">Orders</span>
-</div>
-<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:text-primary transition-colors cursor-pointer group">
-<span class="material-symbols-outlined group-hover:scale-110 transition-transform">auto_awesome</span>
-<span class="text-label-sm font-label-sm">Curated</span>
-</div>
-</nav>
-<!-- Floating Micro Interaction for Speed -->
-<div class="fixed bottom-24 right-4 pointer-events-none">
-<div class="glass-badge flex items-center gap-2 px-3 py-2 rounded-full text-white text-[10px] font-bold neon-glow animate-bounce">
-<span class="material-symbols-outlined text-xs">timer</span>
-<span>DELIVERING IN 9 MINS</span>
-</div>
-</div>
-<script>
-        // Simple micro-interaction for input clearing
-        const searchInput = document.querySelector('input');
-        searchInput.addEventListener('input', (e) => {
-            // Logic for showing/hiding a clear button could go here
-            if (e.target.value.length > 0) {
-                // Potential dynamic filtering animation
-            }
-        });
+  * { font-family: 'Plus Jakarta Sans', sans-serif; }
+  body {
+    background-color: #f8f8f8;
+    color: #1a1a1a;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 100dvh;
+  }
+</style>
+</head>
+<body>
 
-        // Scale interactions as defined in design system
-        document.querySelectorAll('button, .cursor-pointer').forEach(el => {
-            el.addEventListener('mousedown', () => el.classList.add('scale-95'));
-            el.addEventListener('mouseup', () => el.classList.remove('scale-95'));
-            el.addEventListener('mouseleave', () => el.classList.remove('scale-95'));
-        });
-    </script>
+<!-- ── STICKY HEADER ─────────────────────────────────────────────────────── -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+  <div class="flex items-center gap-3 px-3 py-3">
+    
+    <!-- Logo -->
+    <span class="text-[22px] font-extrabold text-[#8B2CF5]">zepto</span>
+    
+    <!-- Delivery Time & Location -->
+    <div class="flex items-center gap-1 text-[12px]">
+      <span class="material-symbols-outlined text-[13px] text-[#8B2CF5]" style="font-variation-settings:'FILL' 1;">bolt</span>
+      <span class="font-bold text-gray-800">6 minutes</span>
+      <span class="text-gray-400">|</span>
+      <button class="flex items-center gap-0.5 text-gray-600">
+        <span class="text-[11px] font-medium">Ward 44 – Ward 44, Kolkata, West B...</span>
+        <span class="material-symbols-outlined text-[13px]">expand_more</span>
+      </button>
+    </div>
+
+    <!-- Spacer -->
+    <div class="flex-1"></div>
+
+    <!-- Profile -->
+    <button class="flex flex-col items-center gap-0.5">
+      <span class="material-symbols-outlined text-[22px] text-gray-600">account_circle</span>
+      <span class="text-[9px] text-gray-500 font-medium">Profile</span>
+    </button>
+
+    <!-- Cart -->
+    <button class="flex flex-col items-center gap-0.5 relative" data-nav="cart">
+      <span class="material-symbols-outlined text-[22px] text-gray-600">shopping_cart</span>
+      <span class="text-[9px] text-gray-500 font-medium">Cart</span>
+      <span class="absolute -top-0.5 -right-0.5 bg-[#8B2CF5] text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+    </button>
+
+  </div>
+
+  <!-- Search Bar -->
+  <div class="px-3 pb-3">
+    <div class="relative">
+      <span class="material-symbols-outlined text-gray-400 text-[18px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">search</span>
+      <input
+        class="w-full h-10 bg-gray-100 rounded-full pl-9 pr-3 text-sm placeholder:text-gray-400 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#8B2CF5]"
+        placeholder='Search for over 5000 products'
+        type="text"
+        autofocus
+      />
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN ───────────────────────────────────────────────────────────────── -->
+<main class="pb-24 px-3 pt-3">
+
+  <!-- Paan Corner Banner -->
+  <section class="rounded-3xl p-6 mb-4 relative overflow-hidden" style="background:#A3D9E8;">
+    
+    <!-- Left Content -->
+    <div class="relative z-10 w-2/3">
+      <h2 class="text-[20px] font-black text-teal-900 leading-tight">
+        GET CIGARETTES AT <span class="inline-block bg-gray-800 text-white px-2 py-1 rounded-lg mx-1 text-[18px]">₹0</span><br/>CONVENIENCE FEE
+      </h2>
+      <p class="text-[13px] font-semibold text-teal-800 mt-2 leading-snug">
+        Get smoking accessories, fresheners &amp; more delivered in minutes!
+      </p>
+      <button class="mt-4 bg-gray-800 text-white text-[12px] font-bold px-4 py-2 rounded-full flex items-center gap-1 active:opacity-80">
+        Order now <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+      </button>
+    </div>
+
+    <!-- Right Product Image -->
+    <div class="absolute right-4 bottom-0 w-32 h-32">
+      <img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8CgEf5oo1W0N_-ndHyVEvP-qI65dJUY67GhUcexN5wqweOXS2aWhawaZxhX7kN737Tq2cBYh5Nbwgmim2bJsoOILIlC3p1zdfETCEzhkBwnvFoqtP0u5VOouK3-rabaechc02qtT4lV_9vrW_hLrh9htVPYw2Fhvl836R6jq9gQoJ-nFBbzRs3XygElVDrR4QHYKIczEJH9P3rGf4lmN2EMjXVqSaG-3Ybu0v7IoE9VU2F7sba_fEfutaj57XsXkXkUrODpE0EhdJ" alt="Cigarettes Paan"/>
+    </div>
+
+  </section>
+
+  <!-- Offers Section -->
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-[14px] font-bold text-gray-800">Offers</h3>
+    <button class="text-[12px] font-semibold text-[#8B2CF5] flex items-center gap-1">
+      <span>Collapse</span>
+      <span class="material-symbols-outlined text-[14px]">expand_less</span>
+    </button>
+  </div>
+
+  <!-- Unlock Free Delivery Card -->
+  <div class="bg-gray-800 rounded-2xl px-4 py-3 flex items-center justify-between mb-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+        <span class="material-symbols-outlined text-[18px] text-gray-800" style="font-variation-settings:'FILL' 1;">local_shipping</span>
+      </div>
+      <div>
+        <p class="text-[12px] font-bold text-white">Unlock free delivery</p>
+        <p class="text-[11px] text-gray-300">Shop for ₹149</p>
+      </div>
+    </div>
+    <span class="material-symbols-outlined text-[20px] text-gray-400">chevron_right</span>
+  </div>
+
+  <!-- Popular Searches / Trending -->
+  <section>
+    <h3 class="text-[14px] font-bold text-gray-800 mb-3">Trending Searches</h3>
+    <div class="grid grid-cols-2 gap-2">
+      
+      <button class="bg-white rounded-xl p-3 text-left border border-gray-100 shadow-sm active:opacity-80">
+        <p class="text-[11px] text-gray-400 uppercase tracking-wide font-semibold">Trending</p>
+        <p class="text-[13px] font-bold text-gray-800 mt-1">Milk</p>
+      </button>
+
+      <button class="bg-white rounded-xl p-3 text-left border border-gray-100 shadow-sm active:opacity-80">
+        <p class="text-[11px] text-gray-400 uppercase tracking-wide font-semibold">Trending</p>
+        <p class="text-[13px] font-bold text-gray-800 mt-1">Eggs</p>
+      </button>
+
+      <button class="bg-white rounded-xl p-3 text-left border border-gray-100 shadow-sm active:opacity-80">
+        <p class="text-[11px] text-gray-400 uppercase tracking-wide font-semibold">Trending</p>
+        <p class="text-[13px] font-bold text-gray-800 mt-1">Bread</p>
+      </button>
+
+      <button class="bg-white rounded-xl p-3 text-left border border-gray-100 shadow-sm active:opacity-80">
+        <p class="text-[11px] text-gray-400 uppercase tracking-wide font-semibold">Trending</p>
+        <p class="text-[13px] font-bold text-gray-800 mt-1">Tea & Coffee</p>
+      </button>
+
+      <button class="bg-white rounded-xl p-3 text-left border border-gray-100 shadow-sm active:opacity-80">
+        <p class="text-[11px] text-gray-400 uppercase tracking-wide font-semibold">Trending</p>
+        <p class="text-[13px] font-bold text-gray-800 mt-1">Biscuits</p>
+      </button>
+
+      <button class="bg-white rounded-xl p-3 text-left border border-gray-100 shadow-sm active:opacity-80">
+        <p class="text-[11px] text-gray-400 uppercase tracking-wide font-semibold">Trending</p>
+        <p class="text-[13px] font-bold text-gray-800 mt-1">Chips</p>
+      </button>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ── BOTTOM NAV ─────────────────────────────────────────────────────────── -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-100 flex justify-around items-center px-4 py-2 pb-safe shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
+  <a class="flex flex-col items-center gap-0.5" href="#" data-nav="home">
+    <span class="material-symbols-outlined text-[24px] text-gray-400">bolt</span>
+    <span class="text-[10px] font-medium text-gray-400">Zepto</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5" href="#">
+    <span class="material-symbols-outlined text-[24px] text-gray-400">grid_view</span>
+    <span class="text-[10px] font-medium text-gray-400">Categories</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5" href="#">
+    <span class="material-symbols-outlined text-[24px] text-[#8B2CF5]" style="font-variation-settings:'FILL' 1;">search</span>
+    <span class="text-[10px] font-bold text-[#8B2CF5]">Search</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5" href="#">
+    <span class="material-symbols-outlined text-[24px] text-gray-400">auto_awesome</span>
+    <span class="text-[10px] font-medium text-gray-400">Curated</span>
+  </a>
+</nav>
+
 <script src="../app-router.js"></script>
-</body></html>
+</body>
+</html>
