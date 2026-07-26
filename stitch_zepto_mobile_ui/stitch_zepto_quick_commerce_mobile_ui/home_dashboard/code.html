@@ -95,7 +95,7 @@
 
   <!-- Row 2: Category Tabs -->
   <div class="flex overflow-x-auto hide-scrollbar border-t border-gray-100">
-    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-active whitespace-nowrap">
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
       <span class="material-symbols-outlined text-[13px]" style="font-variation-settings:'FILL' 1;">shopping_bag</span>All
     </button>
     <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
@@ -110,7 +110,7 @@
     <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
       <span class="material-symbols-outlined text-[13px]">grass</span>Fresh
     </button>
-    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
+    <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-active whitespace-nowrap" id="electronics-tab">
       <span class="material-symbols-outlined text-[13px]">headphones</span>Electronics
     </button>
     <button class="flex-shrink-0 flex items-center gap-1 px-3 py-2 text-[12px] tab-inactive whitespace-nowrap">
@@ -297,14 +297,14 @@
       <!-- Card 2 -->
       <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex flex-col p-3">
         <div class="relative w-full aspect-square bg-gray-50 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
-          <img class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp_bRxU7xtCQCitckFYe3r5szD9eQQRPMXN0L6oDK6BbFdbHq0LWkdVh4ab728PEOVxcw2ue7Ffx-i5YrvZRSHwr8YDYagdkT6EHE9GTLnctBPx5RyfCAjxZBC8d9qBXHRduaqtz0TcvUgaBjWqdqqUGqcWyit-X5CUotBn7zJFYbCSQk7o6TV5vizLAC9bH7hatE4couUSxiI_vRyJBDnDkYz9Itfwq5-rCM_VM-oGFn5ihMyUghfiPokfaBCEmo2rlnPDkc4iwMe" alt="Eggs"/>
+          <img class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUpU4XiNfPGn6WaSp8v_ZDmfCtes0MlO5poGgkGfzX8Mn6pASA2atOazqtCooHOMSjNvlA6-cGJnKov59F1Jl2RjIBwDXGm_YoV2RHcVNToB177iOZYLHea9RWR_J5nrlwz679dR9ffLCmbSc5kEIjXwnYhufM8W845wNQnw9WcpBsGp9CZqUPs0Q-wKu6z9d0mNEBlzOp50aVkK-op7fxgLMH_iI_bBjyw11Z85SHDAJCVwiO-8iyvTTaPSh1Bh4Inp_3bVRtOEpo" alt="Doritos"/>
           <div class="absolute top-1.5 left-1.5 bg-[#8B2CF5] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
             <span class="material-symbols-outlined text-[9px]">schedule</span>10 MIN
           </div>
         </div>
-        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">EGG WORLD</p>
-        <h4 class="text-[12px] font-bold text-gray-800 leading-tight truncate mt-0.5">Farm Fresh Eggs</h4>
-        <p class="text-[10px] text-gray-400 mt-0.5">6 pcs</p>
+        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">DORITOS</p>
+        <h4 class="text-[12px] font-bold text-gray-800 leading-tight truncate mt-0.5">Nacho Cheese Doritos</h4>
+        <p class="text-[10px] text-gray-400 mt-0.5">90 g</p>
         <div class="flex items-center justify-between mt-2">
           <span class="text-[14px] font-bold text-gray-800">₹54</span>
           <button class="add-btn">Add</button>
@@ -314,14 +314,14 @@
       <!-- Card 3 -->
       <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex flex-col p-3">
         <div class="relative w-full aspect-square bg-gray-50 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
-          <img class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mZKUcuWT6849STma4oWV7ZYOwG_so-GpkAnq9Dynv8A0bzVQF8OMWakcKcbcs0IUoqS1OIJoq6h4mCthwtMnZAAbt-F2_4e_qmDpk-RdXdKJPxKjDQOvPmibadb7jRUiRrPPLfxa0_4uXWChL_9AvkTjOgn3koSPvtHXi7AmIU7CzWDXnkzGabz-yCsYf6Uvd6vJL3ex0qIo1BjzAz5qactCvATPSFtPPCT4bZL-3iJn-aLgwCBBrUwn3wf2ymOIuDcFJ86eI0_E" alt="Strawberries"/>
+          <img class="w-full h-full object-contain p-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8WUSNxNFJkOekgZDka1OawOcB0zbGeh0yGI4tp7H_dpewm2Ns6-SUKguiA7JHFtwzl1d8YXqEAHaLejBOzetHBPCPrt9b5HCSHSrvNZi_ADYh-3lezuN0FFN-PZTMkgthaw-tY7HpuLrFE00Lpr6LOB39pnqyDsPutVfgnUx0mbzvRYslgydxgXUcCXRlYUy1gmeQ2wmC_Ukv_rWYsB2-rZrXEMW0UNIzhnhu0_Rj87iXVFqPJqEnJ50oUKzS6Vyq0dlQOwBKeKp9" alt="Red Bull Cans"/>
           <div class="absolute top-1.5 left-1.5 bg-[#8B2CF5] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
             <span class="material-symbols-outlined text-[9px]">schedule</span>9 MIN
           </div>
         </div>
-        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">FARM FRESH</p>
-        <h4 class="text-[12px] font-bold text-gray-800 leading-tight truncate mt-0.5">Organic Strawberries</h4>
-        <p class="text-[10px] text-gray-400 mt-0.5">250 g</p>
+        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">RED BULL</p>
+        <h4 class="text-[12px] font-bold text-gray-800 leading-tight truncate mt-0.5">Red Bull Energy Cans</h4>
+        <p class="text-[10px] text-gray-400 mt-0.5">4 x 250 ml</p>
         <div class="flex items-center justify-between mt-2">
           <span class="text-[14px] font-bold text-gray-800">₹120</span>
           <button class="add-btn">Add</button>
@@ -350,6 +350,32 @@
 
 </main>
 
+<!-- Electronics Recommendation Popup -->
+<div class="fixed inset-0 z-[70] hidden" id="electronics-popup" data-router-ignore>
+  <div class="absolute inset-0 bg-black/45" data-router-ignore></div>
+  <div class="absolute inset-x-3 bottom-24 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4" data-router-ignore>
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-wide text-[#8B2CF5]">Electronics Pick For You</p>
+        <h3 class="text-[16px] font-extrabold text-gray-900 mt-1">Anker 20W Fast Adapter</h3>
+        <p class="text-[11px] text-gray-500 mt-0.5">Trusted accessory for your weekend hangout setup.</p>
+      </div>
+      <button class="text-gray-500" id="close-electronics-popup" data-router-ignore>
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="mt-3 flex items-center justify-between bg-gray-50 rounded-xl px-3 py-2.5">
+      <div>
+        <p class="text-[11px] text-gray-500">Special Price</p>
+        <p class="text-[16px] font-extrabold text-gray-900">₹899</p>
+      </div>
+      <button class="bg-[#8B2CF5] text-white text-[12px] font-bold px-4 py-2 rounded-lg" data-router-ignore>
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ── BOTTOM NAV ─────────────────────────────────────────────────────────── -->
 <nav class="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-100 flex justify-around items-center px-4 py-2 pb-safe shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
   <a class="flex flex-col items-center gap-0.5" href="#" data-nav="home">
@@ -371,5 +397,31 @@
 </nav>
 
 <script src="../app-router.js"></script>
+<script>
+  (function () {
+    const popup = document.getElementById('electronics-popup');
+    const closeBtn = document.getElementById('close-electronics-popup');
+    const tab = document.getElementById('electronics-tab');
+
+    if (tab) {
+      tab.classList.remove('tab-inactive');
+      tab.classList.add('tab-active');
+      tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+
+    if (popup) {
+      setTimeout(() => {
+        popup.classList.remove('hidden');
+      }, 350);
+    }
+
+    if (closeBtn && popup) {
+      closeBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        popup.classList.add('hidden');
+      });
+    }
+  })();
+</script>
 </body>
 </html>
