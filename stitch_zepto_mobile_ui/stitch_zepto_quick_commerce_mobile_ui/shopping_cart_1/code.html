@@ -42,7 +42,7 @@
     </button>
     
     <!-- Title -->
-    <h1 class="text-[18px] font-bold text-gray-800 flex-1">Your Cart (3 Items)</h1>
+    <h1 class="text-[18px] font-bold text-gray-800 flex-1" id="cart-item-count">Your Cart (3 Items)</h1>
     
     <!-- Profile -->
     <button class="flex flex-col items-center gap-0.5">
@@ -56,7 +56,7 @@
 <main class="pb-32 px-4 pt-4">
 
   <!-- Cart Items -->
-  <section class="space-y-3 mb-6">
+  <section class="space-y-3 mb-6" id="cart-items-list">
 
     <!-- Item 1: Milk -->
     <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 flex gap-3 items-center">
@@ -127,8 +127,8 @@
       Bill Summary
     </h2>
     <div class="flex justify-between text-[12px] text-gray-600 pb-2 border-b border-gray-100">
-      <span>Item Total (3 items)</span>
-      <span class="text-gray-800 font-semibold">₹201</span>
+      <span id="item-total-label">Item Total (3 items)</span>
+      <span class="text-gray-800 font-semibold" id="item-total-value">₹201</span>
     </div>
     <div class="flex justify-between text-[12px] text-gray-600">
       <span>Delivery Fee</span>
@@ -140,7 +140,7 @@
     </div>
     <div class="flex justify-between text-[14px] font-bold text-gray-800">
       <span>Grand Total</span>
-      <span>₹201</span>
+      <span id="grand-total-value">₹201</span>
     </div>
   </section>
 
@@ -171,6 +171,38 @@
   </a>
 </nav>
 
+<script src="../cart-store.js"></script>
+<script>
+  (function () {
+    const list = document.getElementById('cart-items-list');
+    function render(state) {
+      const totals = ZeptoCart.totals(state.items);
+      list.innerHTML = state.items.length ? state.items.map(item => `
+        <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 flex gap-3 items-center">
+          <div class="w-20 h-20 bg-gray-50 rounded-lg flex-shrink-0 overflow-hidden flex items-center justify-center">${item.image ? `<img class="w-full h-full object-contain p-1" src="${item.image}" alt="${item.name}"/>` : '<span class="material-symbols-outlined text-4xl text-[#8B2CF5]">style</span>'}</div>
+          <div class="flex-1">
+            <p class="text-[10px] text-gray-400 uppercase font-semibold">${item.brand || ''}</p>
+            <h3 class="text-[13px] font-bold text-gray-800 leading-tight">${item.name}</h3>
+            <p class="text-[11px] text-gray-500 mt-0.5">${item.subtitle || ''}</p>
+            <div class="flex items-center justify-between mt-2">
+              <span class="text-[14px] font-bold text-gray-800">₹${item.price}</span>
+              <div class="flex items-center gap-1.5 bg-gray-100 rounded-full px-1.5 py-0.5">
+                <button class="qty-btn text-[14px]" data-router-ignore data-cart-action="decrement" data-item-id="${item.id}" aria-label="Decrease ${item.name}">−</button>
+                <span class="text-[11px] font-bold text-gray-800 w-6 text-center">${item.qty}</span>
+                <button class="qty-btn text-[14px]" data-router-ignore data-cart-action="increment" data-item-id="${item.id}" aria-label="Increase ${item.name}">+</button>
+              </div>
+            </div>
+          </div>
+        </div>`).join('') : '<div class="bg-white rounded-xl p-6 text-center text-sm text-gray-500">Your cart is empty.</div>';
+      document.getElementById('cart-item-count').textContent = `Your Cart (${totals.count} Items)`;
+      document.getElementById('item-total-label').textContent = `Item Total (${totals.count} items)`;
+      document.getElementById('item-total-value').textContent = `₹${totals.total}`;
+      document.getElementById('grand-total-value').textContent = `₹${totals.total}`;
+    }
+    ZeptoCart.bindQuantityControls(list, render);
+    render(ZeptoCart.getState());
+  })();
+</script>
 <script src="../app-router.js"></script>
 </body>
 </html>
