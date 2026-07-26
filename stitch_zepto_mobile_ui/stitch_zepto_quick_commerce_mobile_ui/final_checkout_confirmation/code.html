@@ -168,62 +168,7 @@
 </div>
 </section>
 <!-- Item List -->
-<section class="space-y-stack-sm">
-<!-- Item 1 -->
-<div class="glass-card p-4 rounded-xl flex gap-4 items-center">
-<div class="w-16 h-16 bg-white rounded-lg flex-shrink-0 overflow-hidden">
-<img class="w-full h-full object-contain p-1" data-alt="High-resolution commercial photography of an Amul Taaza Milk 1-liter carton against a clean studio backdrop. The packaging is crisp, highlighting the fresh dairy product with cool, professional lighting in a modern dark-mode setting with purple neon reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACNYo4EF03b-suChCAMJejD5LqNZ34JhE3W4sum_2wUBYtpFVXt_DRZbHHaeRKGzPsIqHtCJZsgzmtrDAiQFZZqlmyHlysn7r-rTH0m-RqeNQGN6X2lmDVdaZ6J2WnQe8wFCO-UKxeVB3-uR0s26xn4-2CJstvL44-c-T2lS-uQxLZLL7OudQe8LZZOq32qQHIbYWHtfFzE7cBMlrfis4JMh2YgBSbdajXbwAooaJ1mXwAaHUVMDeTkHalf3xKOZKUM1LDqHes2gym"/>
-</div>
-<div class="flex-1">
-<h3 class="font-label-lg text-on-surface">Taaza Toned Milk</h3>
-<p class="text-on-surface-variant text-label-sm">500 ml</p>
-</div>
-<div class="text-right flex flex-col items-end gap-1">
-<span class="font-headline-md text-primary">₹27</span>
-<div class="flex items-center gap-2 bg-surface-container-high rounded-full px-2 py-1">
-<span class="material-symbols-outlined text-sm text-on-surface-variant">remove</span>
-<span class="text-label-sm font-bold w-4 text-center">1</span>
-<span class="material-symbols-outlined text-sm text-primary">add</span>
-</div>
-</div>
-</div>
-<!-- Item 2 -->
-<div class="glass-card p-4 rounded-xl flex gap-4 items-center">
-<div class="w-16 h-16 bg-white rounded-lg flex-shrink-0 overflow-hidden">
-<img class="w-full h-full object-contain p-1" data-alt="Farm fresh eggs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp_bRxU7xtCQCitckFYe3r5szD9eQQRPMXN0L6oDK6BbFdbHq0LWkdVh4ab728PEOVxcw2ue7Ffx-i5YrvZRSHwr8YDYagdkT6EHE9GTLnctBPx5RyfCAjxZBC8d9qBXHRduaqtz0TcvUgaBjWqdqqUGqcWyit-X5CUotBn7zJFYbCSQk7o6TV5vizLAC9bH7hatE4couUSxiI_vRyJBDnDkYz9Itfwq5-rCM_VM-oGFn5ihMyUghfiPokfaBCEmo2rlnPDkc4iwMe"/>
-</div>
-<div class="flex-1">
-<h3 class="font-label-lg text-on-surface">Farm Fresh Eggs</h3>
-<p class="text-on-surface-variant text-label-sm">6 pcs</p>
-</div>
-<div class="text-right flex flex-col items-end gap-1">
-<span class="font-headline-md text-primary">₹54</span>
-<div class="flex items-center gap-2 bg-surface-container-high rounded-full px-2 py-1">
-<span class="material-symbols-outlined text-sm text-on-surface-variant">remove</span>
-<span class="text-label-sm font-bold w-4 text-center">1</span>
-<span class="material-symbols-outlined text-sm text-primary">add</span>
-</div>
-</div>
-</div>
-<!-- Item 3 -->
-<div class="glass-card p-4 rounded-xl flex gap-4 items-center">
-<div class="w-16 h-16 bg-white rounded-lg flex-shrink-0 overflow-hidden">
-<img class="w-full h-full object-contain p-1" data-alt="Organic strawberries" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mZKUcuWT6849STma4oWV7ZYOwG_so-GpkAnq9Dynv8A0bzVQF8OMWakcKcbcs0IUoqS1OIJoq6h4mCthwtMnZAAbt-F2_4e_qmDpk-RdXdKJPxKjDQOvPmibadb7jRUiRrPPLfxa0_4uXWChL_9AvkTjOgn3koSPvtHXi7AmIU7CzWDXnkzGabz-yCsYf6Uvd6vJL3ex0qIo1BjzAz5qactCvATPSFtPPCT4bZL-3iJn-aLgwCBBrUwn3wf2ymOIuDcFJ86eI0_E"/>
-</div>
-<div class="flex-1">
-<h3 class="font-label-lg text-on-surface">Organic Strawberries</h3>
-<p class="text-on-surface-variant text-label-sm">250 g</p>
-</div>
-<div class="text-right flex flex-col items-end gap-1">
-<span class="font-headline-md text-primary">₹120</span>
-<div class="flex items-center gap-2 bg-surface-container-high rounded-full px-2 py-1">
-<span class="material-symbols-outlined text-sm text-on-surface-variant">remove</span>
-<span class="text-label-sm font-bold w-4 text-center">1</span>
-<span class="material-symbols-outlined text-sm text-primary">add</span>
-</div>
-</div>
-</div>
-</section>
+<section class="space-y-stack-sm" id="final-item-list"></section>
 <!-- Bill Summary Card -->
 <section class="glass-card p-5 rounded-xl space-y-4 shadow-lg border-primary-container/20">
 <h4 class="font-headline-md text-on-surface">Bill Summary</h4>
@@ -282,6 +227,30 @@
 </footer>
 <script>
         const CART_STATE_KEY = 'zeptoCartStateV1';
+        const BASE_ITEMS = [
+            { id: 'milk', name: 'Taaza Toned Milk', qty: 1, price: 27 },
+            { id: 'eggs', name: 'Farm Fresh Eggs', qty: 1, price: 54 },
+            { id: 'strawberries', name: 'Organic Strawberries', qty: 1, price: 120 }
+        ];
+
+        const ITEM_META = {
+            milk: {
+                subtitle: '500 ml',
+                image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuACNYo4EF03b-suChCAMJejD5LqNZ34JhE3W4sum_2wUBYtpFVXt_DRZbHHaeRKGzPsIqHtCJZsgzmtrDAiQFZZqlmyHlysn7r-rTH0m-RqeNQGN6X2lmDVdaZ6J2WnQe8wFCO-UKxeVB3-uR0s26xn4-2CJstvL44-c-T2lS-uQxLZLL7OudQe8LZZOq32qQHIbYWHtfFzE7cBMlrfis4JMh2YgBSbdajXbwAooaJ1mXwAaHUVMDeTkHalf3xKOZKUM1LDqHes2gym'
+            },
+            eggs: {
+                subtitle: '6 pcs',
+                image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAp_bRxU7xtCQCitckFYe3r5szD9eQQRPMXN0L6oDK6BbFdbHq0LWkdVh4ab728PEOVxcw2ue7Ffx-i5YrvZRSHwr8YDYagdkT6EHE9GTLnctBPx5RyfCAjxZBC8d9qBXHRduaqtz0TcvUgaBjWqdqqUGqcWyit-X5CUotBn7zJFYbCSQk7o6TV5vizLAC9bH7hatE4couUSxiI_vRyJBDnDkYz9Itfwq5-rCM_VM-oGFn5ihMyUghfiPokfaBCEmo2rlnPDkc4iwMe'
+            },
+            strawberries: {
+                subtitle: '250 g',
+                image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC0mZKUcuWT6849STma4oWV7ZYOwG_so-GpkAnq9Dynv8A0bzVQF8OMWakcKcbcs0IUoqS1OIJoq6h4mCthwtMnZAAbt-F2_4e_qmDpk-RdXdKJPxKjDQOvPmibadb7jRUiRrPPLfxa0_4uXWChL_9AvkTjOgn3koSPvtHXi7AmIU7CzWDXnkzGabz-yCsYf6Uvd6vJL3ex0qIo1BjzAz5qactCvATPSFtPPCT4bZL-3iJn-aLgwCBBrUwn3wf2ymOIuDcFJ86eI0_E'
+            },
+            uno: {
+                subtitle: 'Mattel Original',
+                image: ''
+            }
+        };
 
         function loadCartState() {
             try {
@@ -295,6 +264,47 @@
             }
         }
 
+        function resolveCartItems() {
+            const cartState = loadCartState();
+            if (!cartState || !Array.isArray(cartState.items) || cartState.items.length === 0) {
+                return BASE_ITEMS.slice();
+            }
+            return cartState.items;
+        }
+
+        function renderFinalItemList(items) {
+            const container = document.getElementById('final-item-list');
+            if (!container) return;
+
+            container.innerHTML = items.map(item => {
+                const meta = ITEM_META[item.id] || { subtitle: '', image: '' };
+                const subtitle = meta.subtitle || '';
+                const imageMarkup = meta.image
+                    ? `<img class="w-full h-full object-contain p-1" src="${meta.image}" alt="${item.name}"/>`
+                    : '<div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-surface-container-high text-3xl">style</span></div>';
+
+                return `
+                    <div class="glass-card p-4 rounded-xl flex gap-4 items-center">
+                        <div class="w-16 h-16 bg-white rounded-lg flex-shrink-0 overflow-hidden">
+                            ${imageMarkup}
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-label-lg text-on-surface">${item.name}</h3>
+                            <p class="text-on-surface-variant text-label-sm">${subtitle}</p>
+                        </div>
+                        <div class="text-right flex flex-col items-end gap-1">
+                            <span class="font-headline-md text-primary">₹${item.price}</span>
+                            <div class="flex items-center gap-2 bg-surface-container-high rounded-full px-2 py-1">
+                                <span class="material-symbols-outlined text-sm text-on-surface-variant">remove</span>
+                                <span class="text-label-sm font-bold w-4 text-center">${item.qty}</span>
+                                <span class="material-symbols-outlined text-sm text-primary">add</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         function sumItems(items) {
             return items.reduce((acc, item) => {
                 acc.count += Number(item.qty || 0);
@@ -304,10 +314,8 @@
         }
 
         function renderFinalTotals() {
-            const cartState = loadCartState();
-            if (!cartState) return;
-
-            const totals = sumItems(cartState.items);
+            const items = resolveCartItems();
+            const totals = sumItems(items);
             const countEl = document.getElementById('final-cart-item-count');
             const itemTotalEl = document.getElementById('final-item-total');
             const grandTotalEl = document.getElementById('final-grand-total');
@@ -317,6 +325,8 @@
             if (itemTotalEl) itemTotalEl.textContent = `₹${totals.total}`;
             if (grandTotalEl) grandTotalEl.textContent = `₹${totals.total}`;
             if (swipeEl) swipeEl.textContent = `Swipe to Pay via UPI • ₹${totals.total}`;
+
+            renderFinalItemList(items);
         }
 
         renderFinalTotals();
