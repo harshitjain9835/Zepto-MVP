@@ -4,7 +4,7 @@
   var flow = {
     home_dashboard: "../search_explore/code.html",
     search_explore: "../shopping_cart_1/code.html",
-    shopping_cart_1: "../shopping_cart_2/code.html",
+    shopping_cart_1: "../checkout_with_ai_cross_sell/code.html",
     shopping_cart_2: "../checkout_with_ai_cross_sell/code.html",
     checkout_with_ai_cross_sell: "../electronics_trust_overlay/code.html",
     electronics_trust_overlay: "../final_checkout_confirmation/code.html",
