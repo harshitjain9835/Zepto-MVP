@@ -24,11 +24,10 @@ Flow:
 1. `home_dashboard/code.html`
 2. `search_explore/code.html`
 3. `shopping_cart_1/code.html`
-4. `shopping_cart_2/code.html`
-5. `checkout_with_ai_cross_sell/code.html`
-6. `electronics_trust_overlay/code.html`
-7. `final_checkout_confirmation/code.html`
-8. loops back to `home_dashboard/code.html`
+4. `checkout_with_ai_cross_sell/code.html`
+5. `electronics_trust_overlay/code.html`
+6. `final_checkout_confirmation/code.html`
+7. loops back to `home_dashboard/code.html`
 
 Shared router file:
 - `app-router.js`
