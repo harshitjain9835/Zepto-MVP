@@ -58,6 +58,10 @@
     var editable = target.closest("input, textarea, select, [contenteditable='true']");
     if (editable) return true;
 
+    // Allow complex in-page controls to bypass flow navigation.
+    var routerIgnored = target.closest("[data-router-ignore]");
+    if (routerIgnored) return true;
+
     return false;
   }
 

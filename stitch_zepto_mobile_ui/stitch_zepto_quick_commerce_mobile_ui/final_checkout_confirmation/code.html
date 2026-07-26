@@ -161,7 +161,7 @@
 <main class="flex-1 px-margin-mobile py-stack-md space-y-stack-lg max-w-2xl mx-auto w-full pb-32">
 <!-- Header & Delivery Badge -->
 <section class="flex flex-col gap-stack-sm">
-<h2 class="text-headline-md font-headline-md text-on-surface">Your Cart (3 Items)</h2>
+<h2 class="text-headline-md font-headline-md text-on-surface" id="final-cart-item-count">Your Cart (3 Items)</h2>
 <div class="inline-flex items-center gap-2 bg-[#E23744] bg-opacity-90 backdrop-blur-md px-3 py-1.5 rounded-full w-fit">
 <span class="material-symbols-outlined text-white text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bolt</span>
 <span class="text-white font-label-sm tracking-wide">8 Mins to Koramangala</span>
@@ -230,7 +230,7 @@
 <div class="space-y-3">
 <div class="flex justify-between items-center text-on-surface-variant">
 <span class="text-body-md">Item Total</span>
-<span class="font-headline-md text-on-surface">₹397</span>
+<span class="font-headline-md text-on-surface" id="final-item-total">₹397</span>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex flex-col">
@@ -245,7 +245,7 @@
 </div>
 <div class="pt-4 border-t border-white/5 flex justify-between items-center">
 <span class="text-headline-md text-on-surface font-extrabold uppercase tracking-tight">Grand Total</span>
-<span class="text-headline-xl text-primary font-extrabold">₹397</span>
+<span class="text-headline-xl text-primary font-extrabold" id="final-grand-total">₹397</span>
 </div>
 </section>
 <!-- Tip Section -->
@@ -256,31 +256,71 @@
 <p class="text-label-sm text-on-surface-variant">Support your rider's hard work</p>
 </div>
 <div class="flex gap-2">
-<button class="px-3 py-1.5 rounded-full border border-outline text-label-sm hover:bg-primary-container transition-colors">₹20</button>
-<button class="px-3 py-1.5 rounded-full border border-outline text-label-sm hover:bg-primary-container transition-colors">₹30</button>
+<button class="px-3 py-1.5 rounded-full border border-outline text-label-sm hover:bg-primary-container transition-colors" data-router-ignore>₹20</button>
+<button class="px-3 py-1.5 rounded-full border border-outline text-label-sm hover:bg-primary-container transition-colors" data-router-ignore>₹30</button>
 </div>
 </div>
 </main>
 <!-- Bottom Sticky Bar -->
 <footer class="fixed bottom-0 left-0 w-full z-50 bg-surface-container dark:bg-surface-container-lowest backdrop-blur-md px-margin-mobile py-4 pb-safe border-t border-white/5">
 <div class="max-w-2xl mx-auto">
-<div class="relative swipe-track h-16 rounded-full overflow-hidden flex items-center shadow-inner group" id="swipe-container">
+<div class="relative swipe-track h-16 rounded-full overflow-hidden flex items-center shadow-inner group" data-router-ignore id="swipe-container">
 <!-- Background Gradient Shimmer -->
 <div class="absolute inset-0 bg-gradient-to-r from-primary-container via-secondary-container to-primary-container opacity-90 shimmer"></div>
 <!-- Interaction Text -->
 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-<span class="text-white font-headline-md text-[18px] tracking-tight flex items-center gap-2">
+<span class="text-white font-headline-md text-[18px] tracking-tight flex items-center gap-2" id="final-swipe-total">
                         Swipe to Pay via UPI • ₹397
                     </span>
 </div>
 <!-- Swipe Handle -->
-<div class="absolute left-1 w-14 h-14 bg-white rounded-full flex items-center justify-center cursor-pointer shadow-xl z-10 transition-transform duration-150 active:scale-95" id="swipe-handle">
+<div class="absolute left-1 w-14 h-14 bg-white rounded-full flex items-center justify-center cursor-pointer shadow-xl z-10 transition-transform duration-150 active:scale-95" data-router-ignore id="swipe-handle">
 <span class="material-symbols-outlined text-secondary-container text-3xl font-black">keyboard_double_arrow_right</span>
 </div>
 </div>
 </div>
 </footer>
 <script>
+        const CART_STATE_KEY = 'zeptoCartStateV1';
+
+        function loadCartState() {
+            try {
+                const raw = localStorage.getItem(CART_STATE_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (!parsed || !Array.isArray(parsed.items)) return null;
+                return parsed;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function sumItems(items) {
+            return items.reduce((acc, item) => {
+                acc.count += Number(item.qty || 0);
+                acc.total += Number(item.qty || 0) * Number(item.price || 0);
+                return acc;
+            }, { count: 0, total: 0 });
+        }
+
+        function renderFinalTotals() {
+            const cartState = loadCartState();
+            if (!cartState) return;
+
+            const totals = sumItems(cartState.items);
+            const countEl = document.getElementById('final-cart-item-count');
+            const itemTotalEl = document.getElementById('final-item-total');
+            const grandTotalEl = document.getElementById('final-grand-total');
+            const swipeEl = document.getElementById('final-swipe-total');
+
+            if (countEl) countEl.textContent = `Your Cart (${totals.count} Items)`;
+            if (itemTotalEl) itemTotalEl.textContent = `₹${totals.total}`;
+            if (grandTotalEl) grandTotalEl.textContent = `₹${totals.total}`;
+            if (swipeEl) swipeEl.textContent = `Swipe to Pay via UPI • ₹${totals.total}`;
+        }
+
+        renderFinalTotals();
+
         // Micro-interaction for Swipe to Pay
         const handle = document.getElementById('swipe-handle');
         const container = document.getElementById('swipe-container');
